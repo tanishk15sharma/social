@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../features/usersSlice";
+// import { getUsers } from "../features/usersSlice";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUsers());
+    // dispatch(getUsers());
   }, []);
   const allUsers = useSelector((state) => state.users.usersArr);
   console.log(allUsers);

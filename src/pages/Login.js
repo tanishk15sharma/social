@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postLoginDetails } from "../features/authSlice";
+// import { postLoginDetails } from "../features/authSlice";
 import { validLogin } from "../utils/auth";
 import { Link } from "react-router-dom";
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
       setLoginErrors(errors);
       return;
     }
-    dispatch(postLoginDetails(loginData));
+    // dispatch(postLoginDetails(loginData));
   };
   const testLoginHandler = () => {
     setLoginData({ username: "adarshbalika", password: "adarshBalika123" });

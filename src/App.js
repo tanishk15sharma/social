@@ -15,7 +15,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/notifications" element={<Notification />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/mock" element={<Mockman />} />
       </Routes>
     </>
   );

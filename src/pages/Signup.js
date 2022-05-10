@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postSignupDetails } from "../features/authSlice";
+// import { postSignupDetails } from "../features/authSlice";
 import { validSignUp } from "../utils/auth";
 const Signup = () => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const Signup = () => {
       return;
     }
     console.log("siggn clicked");
-    dispatch(postSignupDetails(signUpData));
+    // dispatch(postSignupDetails(signUpData));
   };
 
   return (
