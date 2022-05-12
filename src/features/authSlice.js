@@ -9,18 +9,13 @@ const getUserTokenFromLocalStorage = () => {
 
 const postLoginDetails = createAsyncThunk(
   "login/userDetails",
-  async ({ username, password }) => {
-    console.log(username, password);
+  async (loginData) => {
     try {
-      const response = await axios.post("/api/auth/login", {
-        username,
-        password,
-      });
-      console.log(response);
-      // if (response.status === 200) {
-      //   console.log(response);
-      //   return response.data;
-      // }
+      const { data, status } = await axios.post("/auth/login", loginData);
+
+      if (status === 200) {
+        return { data };
+      }
     } catch (err) {
       console.log(err);
       return Promise.reject(err);
@@ -60,24 +55,25 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: {
     [postLoginDetails.pending]: () => {
-      console.log("pending");
+      console.log("login pending");
     },
     [postLoginDetails.fulfilled]: (state, { payload }) => {
-      console.log(payload);
-      // state.username = payload.foundUser.username;
-      // state.firstname = payload.foundUser.firstName;
-      // state.lastname = payload.foundUser.lastName;
-      // state.bookmarks = payload.foundUser.bookmarks;
-      // state.followers = payload.foundUser.followers;
-      // state.following = payload.foundUser.following;
-      // localStorage?.setItem("userToken", payload.encodedToken);
+      state.username = payload.data.user.username;
+      state.name = payload.data.user.name;
+      state.bio = payload.data.user.bio;
+      state.profileImage = payload.data.user.profileImage;
+      state.profileCover = payload.data.user.profileCover;
+      // state.bookmark = payload.user.bookmarks;
+      state.followers = payload.data.user.followers;
+      state.following = payload.data.user.following;
+      localStorage?.setItem("userToken", payload.data.token);
     },
     [postLoginDetails.rejected]: (state, { error }) => {
-      console.log("error,try again");
+      console.log("login failed ,try again");
       console.log(error.message);
     },
     [postSignupDetails.pending]: () => {
-      console.log("pending");
+      console.log(" signup pending");
     },
     [postSignupDetails.fulfilled]: (state, { payload }) => {
       state.username = payload.user.username;
@@ -91,6 +87,7 @@ const authSlice = createSlice({
       localStorage?.setItem("userToken", payload.token);
     },
     [postSignupDetails.rejected]: (state, { error }) => {
+      console.log("signup failed ,try again");
       console.log(error.message);
     },
   },
