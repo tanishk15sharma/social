@@ -3,7 +3,7 @@ import { PostCard } from "./PostCard";
 import { getAllPosts, getUserAllPosts } from "../utils/posts";
 const Feed = ({ userId }) => {
   const [posts, setPosts] = useState([]);
-  console.log(userId, "feed page me");
+
   useEffect(() => {
     (async () => {
       const allPosts = userId
