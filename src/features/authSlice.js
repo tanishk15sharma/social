@@ -28,7 +28,7 @@ const postSignupDetails = createAsyncThunk(
   async (signupData) => {
     try {
       const { data, status } = await axios.post("/auth/register", signupData);
-      console.log(data);
+
       if (status === 201) {
         return data;
       }

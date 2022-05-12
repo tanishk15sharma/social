@@ -3,11 +3,10 @@ import { PostCard } from "./PostCard";
 import { getAllPosts } from "../utils/posts";
 const Feed = () => {
   const [posts, setPosts] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2MzZjZjMzFlM2M3OTY0Yzc0ZDhlMCIsImlhdCI6MTY1MjM0NjgyNCwiZXhwIjoxNjUyOTUxNjI0fQ.Y5ugapMHgVjT9VgUjf7O31vuZoefJL2zKzZw4mU3ilw";
+
   useEffect(() => {
     (async () => {
-      const allPosts = await getAllPosts(token);
+      const allPosts = await getAllPosts();
       console.log(allPosts);
       setPosts(allPosts);
     })();
