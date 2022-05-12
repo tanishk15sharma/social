@@ -25,7 +25,7 @@ const Profile = () => {
                 className="flex cursor-pointer"
                 onClick={() => setToggleEditModal(true)}
               >
-                <span class="material-icons-outlined opacity-60 ml-2">
+                <span className="material-icons-outlined opacity-60 ml-2">
                   drive_file_rename_outline
                 </span>
               </button>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserTokenFromLocalStorage } from "../features/authSlice";
 const getAllPosts = async () => {
   const token = getUserTokenFromLocalStorage();
-  console.log(token);
+
   try {
     const { data, status } = await axios.get("posts/allposts", {
       headers: {

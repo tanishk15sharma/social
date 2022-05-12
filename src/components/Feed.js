@@ -7,7 +7,6 @@ const Feed = () => {
   useEffect(() => {
     (async () => {
       const allPosts = await getAllPosts();
-      console.log(allPosts);
       setPosts(allPosts);
     })();
   }, []);
