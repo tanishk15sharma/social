@@ -6,6 +6,7 @@ import profileBg from "../assets/bg-wall.jpg";
 import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
 import { getUser } from "../utils/user";
+import { Feed } from "../components/Feed";
 const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
@@ -59,6 +60,7 @@ const Profile = () => {
                 Tanishksharma.com
               </a>
             </div>
+            <Feed userId={paramsUserId} />
           </section>
         ) : (
           <h2>loading</h2>

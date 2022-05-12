@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { PostCard } from "./PostCard";
-import { getAllPosts } from "../utils/posts";
-const Feed = () => {
+import { getAllPosts, getUserAllPosts } from "../utils/posts";
+const Feed = ({ userId }) => {
   const [posts, setPosts] = useState([]);
-
+  console.log(userId, "feed page me");
   useEffect(() => {
     (async () => {
-      const allPosts = await getAllPosts();
+      const allPosts = userId
+        ? await getUserAllPosts(userId)
+        : await getAllPosts();
       setPosts(allPosts);
     })();
   }, []);
