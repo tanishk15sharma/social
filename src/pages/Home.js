@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../components/Header";
 
-import { PostLists } from "../components/PostLists";
+import { Feed } from "../components/Feed";
 import { SideNav } from "../components/SideNav";
 import { Suggestions } from "../components/Suggestions";
 
@@ -11,7 +11,7 @@ const Home = () => {
       <Header />
       <div className="flex gap-3">
         <SideNav />
-        <PostLists />
+        <Feed />
         <Suggestions />
       </div>
     </div>

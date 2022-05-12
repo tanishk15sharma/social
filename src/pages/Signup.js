@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { postSignupDetails } from "../features/authSlice";
+import { postSignupDetails } from "../features/authSlice";
 import { validSignUp } from "../utils/auth";
 const Signup = () => {
   const dispatch = useDispatch();
@@ -9,18 +9,19 @@ const Signup = () => {
   console.log(userDetails.auth);
 
   const [signUpData, setSignUpData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     username: "",
     password: "",
+    email: "",
     confirmPassword: "",
     terms: false,
   });
+
   const [signUpErrors, setSignUpErrors] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     username: "",
     password: "",
+    email: "",
     confirmPassword: "",
     terms: "",
   });
@@ -46,8 +47,8 @@ const Signup = () => {
       setSignUpErrors(errors);
       return;
     }
-    console.log("siggn clicked");
-    // dispatch(postSignupDetails(signUpData));
+    console.log("sign clicked");
+    dispatch(postSignupDetails(signUpData));
   };
 
   return (
@@ -58,44 +59,24 @@ const Signup = () => {
       <div className="flex flex-col items-center justify-center">
         <h1>CREATE NEW ACCOUNT</h1>
         <form onSubmit={handleSignup}>
-          <label className="mt-3">
-            <span className="block text-sm font-medium text-slate-700 mt-2">
-              First Name
-            </span>
-            <input
-              className=" border border-solid p-1 w-full required:border-red "
-              placeholder="First Name"
-              name="firstName"
-              value={signUpData.firstName}
-              onChange={inputHandler}
-            />
-          </label>
-          {signUpErrors.firstName && (
-            <span className="text-red text-xs flex">
-              <span className="material-icons-outlined text-xs mr-1">
-                error_outline
-              </span>
-              {signUpErrors.firstName}
-            </span>
-          )}
           <label>
             <span className="block text-sm font-medium text-slate-700 mt-2">
-              Last Name
+              Name
             </span>
             <input
               className=" border border-solid p-1 w-full  required:border-red"
-              placeholder="Last Name"
-              name="lastName"
-              value={signUpData.lastName}
+              placeholder="Name"
+              name="name"
+              value={signUpData.name}
               onChange={inputHandler}
             />
           </label>
-          {signUpErrors.lastName && (
+          {signUpErrors.name && (
             <span className="text-red text-xs flex">
               <span className="material-icons-outlined text-xs mr-1">
                 error_outline
               </span>
-              {signUpErrors.lastName}
+              {signUpErrors.name}
             </span>
           )}
           <label>
@@ -116,6 +97,27 @@ const Signup = () => {
                 error_outline
               </span>
               {signUpErrors.username}
+            </span>
+          )}
+
+          <label>
+            <span className="block text-sm font-medium text-slate-700 mt-2">
+              Email
+            </span>
+            <input
+              className=" border border-solid p-1 w-full  required:border-red"
+              placeholder="Email"
+              name="email"
+              value={signUpData.email}
+              onChange={inputHandler}
+            />
+          </label>
+          {signUpErrors.email && (
+            <span className="text-red text-xs flex">
+              <span className="material-icons-outlined text-xs mr-1">
+                error_outline
+              </span>
+              {signUpErrors.email}
             </span>
           )}
           <label>

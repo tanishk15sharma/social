@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { postLoginDetails } from "../features/authSlice";
+import { postLoginDetails } from "../features/authSlice";
 import { validLogin } from "../utils/auth";
 import { Link } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state);
-  // console.log(userDetails);
+  console.log(userDetails.auth);
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [loginErrors, setLoginErrors] = useState({
     username: "",
@@ -25,7 +25,7 @@ const Login = () => {
       setLoginErrors(errors);
       return;
     }
-    // dispatch(postLoginDetails(loginData));
+    dispatch(postLoginDetails(loginData));
   };
   const testLoginHandler = () => {
     setLoginData({ username: "adarshbalika", password: "adarshBalika123" });
@@ -40,7 +40,7 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <label>
             <span className="block text-sm font-medium text-slate-700">
-              userName
+              username
             </span>
             <input
               type="text"
