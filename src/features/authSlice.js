@@ -42,11 +42,11 @@ const postSignupDetails = createAsyncThunk(
 );
 
 const initialState = {
-  token: null,
   username: "",
-  firstname: "",
-  lastname: "",
+  name: "",
   bio: "",
+  profileImage: "",
+  profileCover: "",
   bookmarks: [],
   followers: [],
   following: [],

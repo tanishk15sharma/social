@@ -7,13 +7,12 @@ const Suggestions = () => {
   useEffect(() => {
     // dispatch(getUsers());
   }, []);
-  const allUsers = useSelector((state) => state.users.usersArr);
-  console.log(allUsers);
+
   return (
     <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-3/12">
       <h2 className="font-bold text-primary-800">Suggestions for you </h2>
       <div className=" ">
-        {allUsers.map((user) => {
+        {/* {allUsers.map((user) => {
           return (
             <div
               className="mb-1 flex justify-between items-center mb-3"
@@ -38,7 +37,7 @@ const Suggestions = () => {
               </button>
             </div>
           );
-        })}
+        })} */}
       </div>
     </aside>
   );

@@ -27,19 +27,15 @@ const validLogin = ({ username, password }, initialErrors) => {
 };
 
 const validSignUp = (
-  { firstName, lastName, username, password, confirmPassword, terms },
+  { name, username, password, confirmPassword, terms },
   initialErrors
 ) => {
-  if (!firstName)
+  if (!name)
     return {
       isValid: false,
-      errors: { ...initialErrors, firstName: "First Name is Required" },
+      errors: { ...initialErrors, firstName: "User Name is Required" },
     };
-  if (!lastName)
-    return {
-      isValid: false,
-      errors: { ...initialErrors, lastName: "Last Name is Required" },
-    };
+
   if (!username)
     return {
       isValid: false,
