@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { postSignupDetails } from "../features/authSlice";
+import { postSignupDetails } from "../features/authSlice";
 import { validSignUp } from "../utils/auth";
 const Signup = () => {
   const dispatch = useDispatch();
@@ -12,13 +12,16 @@ const Signup = () => {
     name: "",
     username: "",
     password: "",
+    email: "",
     confirmPassword: "",
     terms: false,
   });
+
   const [signUpErrors, setSignUpErrors] = useState({
     name: "",
     username: "",
     password: "",
+    email: "",
     confirmPassword: "",
     terms: "",
   });
@@ -45,7 +48,7 @@ const Signup = () => {
       return;
     }
     console.log("sign clicked");
-    // dispatch(postSignupDetails(signUpData));
+    dispatch(postSignupDetails(signUpData));
   };
 
   return (
@@ -94,6 +97,27 @@ const Signup = () => {
                 error_outline
               </span>
               {signUpErrors.username}
+            </span>
+          )}
+
+          <label>
+            <span className="block text-sm font-medium text-slate-700 mt-2">
+              Email
+            </span>
+            <input
+              className=" border border-solid p-1 w-full  required:border-red"
+              placeholder="Email"
+              name="email"
+              value={signUpData.email}
+              onChange={inputHandler}
+            />
+          </label>
+          {signUpErrors.email && (
+            <span className="text-red text-xs flex">
+              <span className="material-icons-outlined text-xs mr-1">
+                error_outline
+              </span>
+              {signUpErrors.email}
             </span>
           )}
           <label>

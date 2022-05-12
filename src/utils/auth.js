@@ -27,7 +27,7 @@ const validLogin = ({ username, password }, initialErrors) => {
 };
 
 const validSignUp = (
-  { name, username, password, confirmPassword, terms },
+  { name, username, email, password, confirmPassword, terms },
   initialErrors
 ) => {
   if (!name)
@@ -41,7 +41,11 @@ const validSignUp = (
       isValid: false,
       errors: { ...initialErrors, username: "Unique username is Required" },
     };
-
+  if (!email)
+    return {
+      isValid: false,
+      errors: { ...initialErrors, username: "Email is Required" },
+    };
   if (!PASSWORD_UPPERCASE_REGEX.test(password))
     return {
       isValid: false,
@@ -70,10 +74,10 @@ const validSignUp = (
   return {
     isValid: true,
     errors: {
-      firstName: "",
-      lastName: "",
+      name: "",
       username: "",
       password: "",
+      email: "",
       confirmPassword: "",
     },
   };
