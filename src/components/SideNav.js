@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const SideNav = () => {
+  const userDetails = useSelector((state) => state);
+  console.log(userDetails.auth);
   return (
     <div className="ml-12 sticky top-20 z-10 w-1/5">
       <ul className="m-3">
@@ -20,10 +23,12 @@ const SideNav = () => {
           <span className="material-icons mr-4">bookmark_border</span>
           <span>Bookmarks</span>
         </li>
+        {/* <Link to={`/profile/${post.userId}`}> */}
         <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">person_outline</span>
           <span>Profile</span>
         </li>
+        {/* </Link> */}
         <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">tune</span>
           <span>Settings</span>
