@@ -33,4 +33,21 @@ const getUserAllPosts = async (userId) => {
   }
 };
 
-export { getAllPosts, getUserAllPosts };
+const likeDislikePost = async (postId) => {
+  const token = getUserTokenFromLocalStorage();
+  try {
+    await axios.put(
+      `posts/like/${postId}`,
+      {},
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getAllPosts, getUserAllPosts, likeDislikePost };
