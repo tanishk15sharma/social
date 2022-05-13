@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { getUser } from "../utils/user";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { likeDislikePost } from "../utils/posts";
+import { useSelector } from "react-redux";
 const PostCard = ({ post }) => {
   const [user, setUser] = useState({});
+  const [like, setLike] = useState(post.likes.length);
+  const [isLiked, setIsLiked] = useState(false);
+  const { auth } = useSelector((state) => state);
 
   useEffect(() => {
     (async () => {
@@ -11,6 +17,16 @@ const PostCard = ({ post }) => {
       setUser(newUser);
     })();
   }, [post.userId]);
+
+  // useEffect(() => {
+  //   setIsLiked(post.likes.includes(auth.id));
+  // }, []);
+
+  const likeHandler = async () => {
+    await likeDislikePost(post._id);
+    setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div className=" p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
@@ -32,8 +48,10 @@ const PostCard = ({ post }) => {
       <p className="my-1">{post.desc}</p>
       <div className="flex justify-between mt-2 text-grayLight font-thin">
         <div className="flex">
-          <span className="material-icons mr-1">favorite_border</span>
-          {post.likes.length}
+          <button onClick={likeHandler}>
+            <span className="material-icons mr-1">favorite_border</span>
+          </button>
+          {like}
         </div>
         <div className="flex">
           <span className="material-icons-outlined">mode_comment</span>
