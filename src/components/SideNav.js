@@ -36,7 +36,7 @@ const SideNav = () => {
       </ul>
       <button
         type="button"
-        className="text-white text-center w-100 bg-gradient-to-br from-primary-500 to-primary-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-primary-200 hover:shadow-md  dark:focus:ring-primary-800 font-medium rounded-2xl  text-xl  px-5 py-2.5 text-center mr-2 mb-2"
+        className="text-white text-center w-100 bg-gradient-to-br from-primary-500 to-primary-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-primary-200 hover:shadow-md  dark:focus:ring-primary-800 font-medium rounded  text-xl  px-5 py-2.5 text-center mr-2 mb-2"
       >
         Post
       </button>

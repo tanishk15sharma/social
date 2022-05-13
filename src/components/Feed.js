@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PostCard } from "./PostCard";
 import { getAllPosts, getUserAllPosts } from "../utils/posts";
+import { CreatePost } from "./CreatePost";
 const Feed = ({ userId }) => {
   const [posts, setPosts] = useState([]);
 
@@ -15,6 +16,7 @@ const Feed = ({ userId }) => {
 
   return (
     <div className="m-3 w-2/5 mr-8">
+      <CreatePost />
       {posts?.map((post) => (
         <PostCard post={post} key={post._id} />
       ))}
