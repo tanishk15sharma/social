@@ -3,12 +3,13 @@ import { getUser } from "../utils/user";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { getUserTokenFromLocalStorage } from "../features/authSlice";
 import { likeDislikePost } from "../utils/posts";
+import { useSelector } from "react-redux";
 const PostCard = ({ post }) => {
   const [user, setUser] = useState({});
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const { auth } = useSelector((state) => state);
 
   useEffect(() => {
     (async () => {
@@ -16,6 +17,10 @@ const PostCard = ({ post }) => {
       setUser(newUser);
     })();
   }, [post.userId]);
+
+  // useEffect(() => {
+  //   setIsLiked(post.likes.includes(auth.id));
+  // }, []);
 
   const likeHandler = async () => {
     await likeDislikePost(post._id);
