@@ -66,7 +66,7 @@ const Profile = () => {
         ) : (
           <h2>loading</h2>
         )}
-        <UserFriends />
+        <UserFriends user={user} />
       </div>
       {toggleEditModal ? (
         <EditModal setToggleEditModal={setToggleEditModal} />
