@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { getUserTokenFromLocalStorage } from "../features/authSlice";
 import { createNewPost, uploadImage } from "../utils/posts";
 const CreatePost = ({ setPosts }) => {
   const [desc, setDesc] = useState("");

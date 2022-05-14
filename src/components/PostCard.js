@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
   };
 
   return (
-    <div className=" p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
+    <main className=" p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
       <div className="mb-1 flex  items-center">
         <Link to={`/profile/${post.userId}`}>
           <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
@@ -45,8 +45,11 @@ const PostCard = ({ post }) => {
           </span>
         </div>
       </div>
-      <p className="my-1">{post.desc}</p>
-      <div className="flex justify-between mt-2 text-grayLight font-thin">
+      <section>
+        <p className="my-1">{post.desc}</p>
+        <img src={post.image ? post.image : ""} />
+      </section>
+      <section className="flex justify-between mt-2 text-grayLight font-thin">
         <div className="flex">
           <button onClick={likeHandler}>
             <span className="material-icons mr-1">favorite_border</span>
@@ -63,8 +66,8 @@ const PostCard = ({ post }) => {
         <div className="flex">
           <span className="material-icons mr-1">share</span>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
