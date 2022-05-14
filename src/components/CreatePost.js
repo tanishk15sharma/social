@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { getUserTokenFromLocalStorage } from "../features/authSlice";
 const CreatePost = () => {
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    const token = getUserTokenFromLocalStorage();
     const data = new FormData();
     data.append("file", imageFile);
     data.append("upload_preset", "social-imgCloud");
@@ -16,7 +18,19 @@ const CreatePost = () => {
         "https://api.cloudinary.com/v1_1/tanishkcloudimg/image/upload",
         data
       );
-      console.log(res.data.secure_url);
+      const postRes = await axios.post(
+        "/posts/",
+        {
+          desc,
+          image: res.data.secure_url,
+        },
+        {
+          headers: {
+            token,
+          },
+        }
+      );
+      console.log(postRes);
     } catch (err) {
       console.log(err);
     }
