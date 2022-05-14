@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const SideNav = () => {
   const userDetails = useSelector((state) => state);
-  console.log(userDetails.auth);
+
   return (
     <div className="ml-12 sticky top-20 z-10 w-1/5">
       <ul className="m-3">

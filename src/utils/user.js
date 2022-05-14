@@ -9,4 +9,17 @@ const getUser = async (id) => {
   }
 };
 
-export { getUser };
+const getUserFriends = async (userId) => {
+  if (userId) {
+    try {
+      const { data, status } = await axios.get(`/users/myFriends/${userId}`);
+      if (status === 200) {
+        return data;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+
+export { getUser, getUserFriends };

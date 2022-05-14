@@ -20,7 +20,6 @@ const Profile = () => {
     })();
   }, [paramsUserId]);
 
-  console.log(user);
   return (
     <div>
       <Header />
