@@ -13,8 +13,8 @@ const PostCard = ({ post }) => {
 
   useEffect(() => {
     (async () => {
-      const newUser = await getUser(post.userId);
-      setUser(newUser);
+      const currentUser = await getUser(post.userId);
+      setUser(currentUser);
     })();
   }, [post.userId]);
 
