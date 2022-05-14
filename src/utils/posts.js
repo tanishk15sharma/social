@@ -60,11 +60,41 @@ const uploadImage = async (imageFile) => {
       "https://api.cloudinary.com/v1_1/tanishkcloudimg/image/upload",
       uploadData
     );
-    console.log(status);
-    return data.secure_url;
+    if (status === 200) {
+      return data.secure_url;
+    }
   } catch (err) {
     console.log(err);
   }
 };
 
-export { getAllPosts, getUserAllPosts, likeDislikePost, uploadImage };
+const createNewPost = async (desc, imgUrl) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+    const { data, status } = await axios.post(
+      "/posts/",
+      {
+        desc,
+        image: imgUrl,
+      },
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    if (status === 200) {
+      return data;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getAllPosts,
+  getUserAllPosts,
+  likeDislikePost,
+  uploadImage,
+  createNewPost,
+};

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { getUserTokenFromLocalStorage } from "../features/authSlice";
-import { uploadImage } from "../utils/posts";
+import { createNewPost, uploadImage } from "../utils/posts";
 const CreatePost = ({ setPosts }) => {
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
@@ -10,31 +10,8 @@ const CreatePost = ({ setPosts }) => {
     e.preventDefault();
 
     const imageUrl = await uploadImage(imageFile);
-
-    console.log(imageUrl);
-
-    // try {
-    //   const res = await axios.post(
-    //     "https://api.cloudinary.com/v1_1/tanishkcloudimg/image/upload",
-    //     uploadData
-    //   );
-    //   const { data } = await axios.post(
-    //     "/posts/",
-    //     {
-    //       desc,
-    //       image: res.data.secure_url,
-    //     },
-    //     {
-    //       headers: {
-    //         token,
-    //       },
-    //     }
-    //   );
-    //   console.log(data);
-    //   setPosts((allPosts) => [...allPosts, data]);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    const newPost = await createNewPost(desc, imageUrl);
+    setPosts((allPosts) => [...allPosts, newPost]);
   };
   return (
     <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
