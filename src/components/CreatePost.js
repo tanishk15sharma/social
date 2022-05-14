@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CreatePost = () => {
+  const [desc, setDesc] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newPost = {
+      desc,
+      image: imageFile,
+    };
+    console.log(newPost);
+  };
   return (
     <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
       <div className="mb-1 flex  items-center ">
@@ -11,24 +22,39 @@ const CreatePost = () => {
         <div className="leading-5 w-full pl-2">
           <input
             placeholder="hey username share your... !"
-            className="w-full focus:outline-none "
+            className="w-full focus:outline-none"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
           />
         </div>
       </div>
-      <div className="flex justify-between mt-2 p-4 items-center">
-        <div className="text-grayLight font-thin">
-          <span class="material-icons-outlined mr-2">collections</span>
-          <span class="material-icons-outlined ml-2">
+
+      <form
+        className="text-grayLight flex justify-between mt-2 p-4 items-center"
+        onSubmit={submitHandler}
+      >
+        <div>
+          <label htmlFor="imageFile" className="cursor-pointer">
+            <span className="material-icons-outlined mr-2">collections</span>
+            <input
+              type="file"
+              id="imageFile"
+              accept=".png,.jpeg,.jpg"
+              className="hidden"
+              onChange={(e) => setImageFile(e.target.files[0])}
+            />
+          </label>
+          <span className="material-icons-outlined ml-2">
             sentiment_satisfied_alt
           </span>
         </div>
         <button
-          type="button"
+          type="submit"
           className="text-white text-center w-100 bg-gradient-to-br from-primary-500 to-primary-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-primary-200 hover:shadow-md  dark:focus:ring-primary-800 font-medium rounded opacity-70  text-sm  px-5 py-2.5 text-center mr-2 mb-2 hover:opacity-90"
         >
           Post
         </button>
-      </div>
+      </form>
     </div>
   );
 };
