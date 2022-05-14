@@ -1,16 +1,25 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const CreatePost = () => {
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    const newPost = {
-      desc,
-      image: imageFile,
-    };
-    console.log(newPost);
+    const data = new FormData();
+    data.append("file", imageFile);
+    data.append("upload_preset", "social-imgCloud");
+    data.append("cloud_name", "tanishkcloudimg");
+
+    try {
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/tanishkcloudimg/image/upload",
+        data
+      );
+      console.log(res.data.secure_url);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
