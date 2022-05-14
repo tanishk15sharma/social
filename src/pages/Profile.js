@@ -7,6 +7,7 @@ import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
 import { getUser } from "../utils/user";
 import { Feed } from "../components/Feed";
+import { UserFriends } from "../components/UserFriends";
 const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
@@ -33,7 +34,7 @@ const Profile = () => {
                 {/* <img src={profileBg} alt="profile-bg" /> */}
               </div>
             </div>
-            <div className="text-left mt-10 m-8 ">
+            <div className="text-left   mt-10 m-8 ">
               <span className="font-bold text-xl flex items-center">
                 {user.name}
                 <button
@@ -65,7 +66,7 @@ const Profile = () => {
         ) : (
           <h2>loading</h2>
         )}
-        <Suggestions />
+        <UserFriends />
       </div>
       {toggleEditModal ? (
         <EditModal setToggleEditModal={setToggleEditModal} />

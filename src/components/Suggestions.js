@@ -9,7 +9,7 @@ const Suggestions = () => {
   }, []);
 
   return (
-    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-3/12">
+    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-9/12">
       <h2 className="font-bold text-primary-800">Suggestions for you </h2>
       <div className=" ">
         {/* {allUsers.map((user) => {

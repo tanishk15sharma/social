@@ -15,7 +15,7 @@ const Feed = ({ userId }) => {
   }, []);
 
   return (
-    <div className="m-3 w-2/5 mr-8">
+    <div className="m-3  mr-8">
       <CreatePost setPosts={setPosts} />
       {posts?.map((post) => (
         <PostCard post={post} key={post._id} />
