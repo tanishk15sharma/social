@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
   };
 
   return (
-    <main className=" p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
+    <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
       <div className="mb-1 flex  items-center">
         <Link to={`/profile/${post.userId}`}>
           <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
