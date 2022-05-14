@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 const UserFriends = ({ user }) => {
-  const [myFriends, setMyFriends] = useState([]);
+  const [myFriendList, setMyFriendList] = useState([]);
 
-  useEffect(() => {}, user._id);
-
+  useEffect(() => {
+    (async () => {
+      const friendList = await getUserFriends(user._id);
+      setMyFriendList(friendList);
+    })();
+  }, user._id);
+  console.log(myFriendList);
   return (
     <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-3/12">
       <h2 className="text-primary-900 font-bold text-center mb-4 border">
