@@ -50,4 +50,21 @@ const likeDislikePost = async (postId) => {
   }
 };
 
-export { getAllPosts, getUserAllPosts, likeDislikePost };
+const uploadImage = async (imageFile) => {
+  try {
+    const uploadData = new FormData();
+    uploadData.append("file", imageFile);
+    uploadData.append("upload_preset", "social-imgCloud");
+    uploadData.append("cloud_name", "tanishkcloudimg");
+    const { data, status } = await axios.post(
+      "https://api.cloudinary.com/v1_1/tanishkcloudimg/image/upload",
+      uploadData
+    );
+    console.log(status);
+    return data.secure_url;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getAllPosts, getUserAllPosts, likeDislikePost, uploadImage };
