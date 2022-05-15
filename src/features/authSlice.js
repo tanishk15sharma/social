@@ -39,26 +39,17 @@ const postSignupDetails = createAsyncThunk(
   }
 );
 
-const initialState = {
-  username: "",
-  name: "",
-  bio: "",
-  profileImage: "",
-  profileCover: "",
-  bookmarks: [],
-  followers: [],
-  following: [],
-};
 const authSlice = createSlice({
   name: "authentication",
-  initialState,
+  initialState: {},
   reducers: {},
   extraReducers: {
     [postLoginDetails.pending]: () => {
       console.log("login pending");
     },
     [postLoginDetails.fulfilled]: (state, { payload }) => {
-      state = payload.data;
+      console.log(payload.data);
+      state = payload.data.data.user;
       // state.username = payload.data.user.username;
       // state.name = payload.data.user.name;
       // state.bio = payload.data.user.bio;

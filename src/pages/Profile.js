@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
-import { Suggestions } from "../components/Suggestions";
-import profileBg from "../assets/bg-wall.jpg";
 import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
 import { getUser } from "../utils/user";
@@ -12,6 +10,7 @@ const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
+  const [isUser, setIsUser] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -36,14 +35,20 @@ const Profile = () => {
             <div className="text-left   mt-10 m-8 ">
               <span className="font-bold text-xl flex items-center">
                 {user.name}
-                <button
-                  className="flex cursor-pointer"
-                  onClick={() => setToggleEditModal(true)}
-                >
-                  <span className="material-icons-outlined opacity-60 ml-2">
-                    drive_file_rename_outline
-                  </span>
-                </button>
+                {isUser ? (
+                  <button
+                    className="flex cursor-pointer"
+                    onClick={() => setToggleEditModal(true)}
+                  >
+                    <span className="material-icons-outlined opacity-60 ml-5">
+                      drive_file_rename_outline
+                    </span>
+                  </button>
+                ) : (
+                  <button className="border ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md">
+                    Follow
+                  </button>
+                )}
               </span>
               <div className="mt-4">
                 <span className="font-medium mr-4">
