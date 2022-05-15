@@ -7,6 +7,7 @@ const UserFriends = ({ user }) => {
   useEffect(() => {
     (async () => {
       const friendList = await getUserFriends(user._id);
+      console.log(friendList);
       setMyFriendList(friendList);
     })();
   }, [user._id]);

@@ -58,15 +58,16 @@ const authSlice = createSlice({
       console.log("login pending");
     },
     [postLoginDetails.fulfilled]: (state, { payload }) => {
-      state.username = payload.data.user.username;
-      state.name = payload.data.user.name;
-      state.bio = payload.data.user.bio;
-      state.profileImage = payload.data.user.profileImage;
-      state.profileCover = payload.data.user.profileCover;
-      // state.bookmark = payload.user.bookmarks;
-      state.followers = payload.data.user.followers;
-      state.following = payload.data.user.following;
-      localStorage?.setItem("userToken", payload.data.token);
+      state = payload.data;
+      // state.username = payload.data.user.username;
+      // state.name = payload.data.user.name;
+      // state.bio = payload.data.user.bio;
+      // state.profileImage = payload.data.user.profileImage;
+      // state.profileCover = payload.data.user.profileCover;
+      // // state.bookmark = payload.user.bookmarks;
+      // state.followers = payload.data.user.followers;
+      // state.following = payload.data.user.following;
+      localStorage.setItem("userToken", payload.data.token);
     },
     [postLoginDetails.rejected]: (state, { error }) => {
       console.log("login failed ,try again");
@@ -76,15 +77,17 @@ const authSlice = createSlice({
       console.log(" signup pending");
     },
     [postSignupDetails.fulfilled]: (state, { payload }) => {
-      state.username = payload.user.username;
-      state.name = payload.user.name;
-      state.bio = payload.user.bio;
-      state.profileImage = payload.user.profileImage;
-      state.profileCover = payload.user.profileCover;
-      // state.bookmark = payload.user.bookmarks;
-      state.followers = payload.user.followers;
-      state.following = payload.user.following;
-      localStorage?.setItem("userToken", payload.token);
+      state = payload.data;
+
+      // state.username = payload.user.username;
+      // state.name = payload.user.name;
+      // state.bio = payload.user.bio;
+      // state.profileImage = payload.user.profileImage;
+      // state.profileCover = payload.user.profileCover;
+      // // state.bookmark = payload.user.bookmarks;
+      // state.followers = payload.user.followers;
+      // state.following = payload.user.following;
+      localStorage.setItem("userToken", payload.token);
     },
     [postSignupDetails.rejected]: (state, { error }) => {
       console.log("signup failed ,try again");
