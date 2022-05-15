@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getUserFollowing, getUserFriends } from "../utils/user";
+import { getUserFollowing, getUserFollowers } from "../utils/user";
 const UserFriends = ({ user }) => {
   const [showFriends, setShowFriends] = useState(true);
   const [myFollowingList, setMyFollowingList] = useState([]);
@@ -25,7 +25,7 @@ const UserFriends = ({ user }) => {
         className="text-primary-900 w-6/12 font-bold text-center mb-4 border"
         onClick={() => {
           setShowFriends(!showFriends);
-          handleFollowersBtn;
+          handleFollowersBtn();
         }}
       >
         Followers

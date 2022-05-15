@@ -23,4 +23,18 @@ const getUserFollowing = async (userId) => {
   }
 };
 
-export { getUser, getUserFollowing };
+const getUserFollowers = async (userId) => {
+  if (userId) {
+    try {
+      const { data, status } = await axios.get(`/users/myFollowers/${userId}`);
+
+      if (status === 200) {
+        return data.followersList;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+
+export { getUser, getUserFollowing, getUserFollowers };
