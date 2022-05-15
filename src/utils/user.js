@@ -9,13 +9,13 @@ const getUser = async (id) => {
   }
 };
 
-const getUserFriends = async (userId) => {
+const getUserFollowing = async (userId) => {
   if (userId) {
     try {
-      const { data, status } = await axios.get(`/users/myFriends/${userId}`);
+      const { data, status } = await axios.get(`/users/myFollowing/${userId}`);
       console.log(data);
       if (status === 200) {
-        return data.friendList;
+        return data.followingList;
       }
     } catch (err) {
       console.log(err);
@@ -23,4 +23,4 @@ const getUserFriends = async (userId) => {
   }
 };
 
-export { getUser, getUserFriends };
+export { getUser, getUserFollowing };
