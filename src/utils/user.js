@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserTokenFromLocalStorage } from "../features/authSlice";
 
 const getUser = async (id) => {
   try {
@@ -37,4 +38,33 @@ const getUserFollowers = async (userId) => {
   }
 };
 
-export { getUser, getUserFollowing, getUserFollowers };
+const followUnfollowUser = async (id, followed) => {
+  const token = getUserTokenFromLocalStorage();
+  try {
+    if (followed) {
+      await axios.put(
+        `/users/follow/${id}`,
+        {},
+        {
+          headers: {
+            token,
+          },
+        }
+      );
+    } else {
+      await axios.put(
+        `/users/unfollow/${id}`,
+        {},
+        {
+          headers: {
+            token,
+          },
+        }
+      );
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getUser, getUserFollowing, getUserFollowers, followUnfollowUser };

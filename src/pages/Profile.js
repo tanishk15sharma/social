@@ -3,11 +3,10 @@ import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
-import { getUser } from "../utils/user";
+import { followUnfollowUser, getUser } from "../utils/user";
 import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
-import axios from "axios";
-import { getUserTokenFromLocalStorage } from "../features/authSlice";
+
 const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
@@ -21,35 +20,7 @@ const Profile = () => {
     })();
   }, [paramsUserId]);
 
-  const handleClick = async () => {
-    console.log("clicked");
-    const token = getUserTokenFromLocalStorage();
-    try {
-      if (followed) {
-        await axios.put(
-          `/users/follow/${user._id}`,
-          {},
-          {
-            headers: {
-              token,
-            },
-          }
-        );
-      } else {
-        await axios.put(
-          `/users/unfollow/${user._id}`,
-          {},
-          {
-            headers: {
-              token,
-            },
-          }
-        );
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const handleClick = () => followUnfollowUser(user._id, followed);
 
   return (
     <div>
