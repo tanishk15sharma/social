@@ -7,17 +7,12 @@ const UserFriends = ({ user }) => {
   const [myFollowersList, setMyFollowersList] = useState([]);
   useEffect(() => {
     (async () => {
+      const followersList = await getUserFollowers(user._id);
+      setMyFollowersList(followersList);
       const followingList = await getUserFollowing(user._id);
       setMyFollowingList(followingList);
     })();
   }, [user._id]);
-
-  const handleFollowersBtn = async () => {
-    if (!showFriends) {
-      const followersList = await getUserFollowers(user._id);
-      setMyFollowersList(followersList);
-    }
-  };
 
   return (
     <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-3/12">
@@ -27,7 +22,6 @@ const UserFriends = ({ user }) => {
         } `}
         onClick={() => {
           setShowFriends(!showFriends);
-          handleFollowersBtn();
         }}
       >
         Followers
