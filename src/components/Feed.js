@@ -12,7 +12,7 @@ const Feed = ({ userId }) => {
         : await getAllPosts();
       setPosts(allPosts);
     })();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="m-3  mr-8">

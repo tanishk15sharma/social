@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
-import { Suggestions } from "../components/Suggestions";
-import profileBg from "../assets/bg-wall.jpg";
 import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
-import { getUser } from "../utils/user";
+import { followUnfollowUser, getUser } from "../utils/user";
 import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
+
 const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
-
+  const [isUser, setIsUser] = useState(false);
+  const [followed, setFollowed] = useState(true);
   useEffect(() => {
     (async () => {
       const newUser = await getUser(paramsUserId);
@@ -20,7 +20,8 @@ const Profile = () => {
     })();
   }, [paramsUserId]);
 
-  console.log(user);
+  const handleClick = () => followUnfollowUser(user._id, followed);
+
   return (
     <div>
       <Header />
@@ -37,14 +38,23 @@ const Profile = () => {
             <div className="text-left   mt-10 m-8 ">
               <span className="font-bold text-xl flex items-center">
                 {user.name}
-                <button
-                  className="flex cursor-pointer"
-                  onClick={() => setToggleEditModal(true)}
-                >
-                  <span className="material-icons-outlined opacity-60 ml-2">
-                    drive_file_rename_outline
-                  </span>
-                </button>
+                {isUser ? (
+                  <button
+                    className="flex cursor-pointer"
+                    onClick={() => setToggleEditModal(true)}
+                  >
+                    <span className="material-icons-outlined opacity-60 ml-5">
+                      drive_file_rename_outline
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleClick}
+                    className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
+                  >
+                    {followed ? "Unfollow" : "Follow"}
+                  </button>
+                )}
               </span>
               <div className="mt-4">
                 <span className="font-medium mr-4">
@@ -66,7 +76,7 @@ const Profile = () => {
         ) : (
           <h2>loading</h2>
         )}
-        <UserFriends />
+        <UserFriends user={user} />
       </div>
       {toggleEditModal ? (
         <EditModal setToggleEditModal={setToggleEditModal} />
