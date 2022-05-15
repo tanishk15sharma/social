@@ -6,18 +6,50 @@ import { useParams } from "react-router";
 import { getUser } from "../utils/user";
 import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
+import axios from "axios";
+import { getUserTokenFromLocalStorage } from "../features/authSlice";
 const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
-  const [isUser, setIsUser] = useState(true);
-
+  const [isUser, setIsUser] = useState(false);
+  const [followed, setFollowed] = useState(true);
   useEffect(() => {
     (async () => {
       const newUser = await getUser(paramsUserId);
       setUser(newUser);
     })();
   }, [paramsUserId]);
+
+  const handleClick = async () => {
+    console.log("clicked");
+    const token = getUserTokenFromLocalStorage();
+    try {
+      if (followed) {
+        await axios.put(
+          `/users/follow/${user._id}`,
+          {},
+          {
+            headers: {
+              token,
+            },
+          }
+        );
+      } else {
+        await axios.put(
+          `/users/unfollow/${user._id}`,
+          {},
+          {
+            headers: {
+              token,
+            },
+          }
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -45,8 +77,11 @@ const Profile = () => {
                     </span>
                   </button>
                 ) : (
-                  <button className="border ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md">
-                    Follow
+                  <button
+                    onClick={handleClick}
+                    className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
+                  >
+                    {followed ? "Unfollow" : "Follow"}
                   </button>
                 )}
               </span>
