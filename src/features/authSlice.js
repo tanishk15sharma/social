@@ -11,7 +11,10 @@ const postLoginDetails = createAsyncThunk(
   "login/userDetails",
   async (loginData) => {
     try {
-      const { data, status } = await axios.post("/auth/login", loginData);
+      const { data, status } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
+        loginData
+      );
 
       if (status === 200) {
         return { data };
@@ -27,7 +30,10 @@ const postSignupDetails = createAsyncThunk(
   "signup/userDetails",
   async (signupData) => {
     try {
-      const { data, status } = await axios.post("/auth/register", signupData);
+      const { data, status } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/auth/register`,
+        signupData
+      );
 
       if (status === 201) {
         return data;
