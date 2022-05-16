@@ -8,13 +8,14 @@ const PostComments = ({ comments, postId }) => {
     userName: "NAME",
     userImage: "image",
   });
-
+  console.log(postId);
   const addBtnHandler = () => {
     if (commentData.comment === "") {
-      alert("please write a comment");
+      return alert("please write a comment");
     }
     addComment(commentData, postId);
     setAllComments((previousComments) => [...previousComments, commentData]);
+    setCommentData({ ...commentData, comment: "" });
   };
   return (
     <div>
