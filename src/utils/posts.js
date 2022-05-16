@@ -3,11 +3,14 @@ import { getUserTokenFromLocalStorage } from "../features/authSlice";
 const getAllPosts = async () => {
   const token = getUserTokenFromLocalStorage();
   try {
-    const { data, status } = await axios.get("/posts/allposts", {
-      headers: {
-        token,
-      },
-    });
+    const { data, status } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/allposts`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
 
     if (status === 200) {
       return data.allPost;
@@ -20,11 +23,14 @@ const getAllPosts = async () => {
 const getUserAllPosts = async (userId) => {
   const token = getUserTokenFromLocalStorage();
   try {
-    const { data, status } = await axios.get(`/posts/userPosts/${userId}`, {
-      headers: {
-        token,
-      },
-    });
+    const { data, status } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/userPosts/${userId}`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
     if (status === 200) {
       return data.userPosts;
     }
@@ -37,7 +43,7 @@ const likeDislikePost = async (postId) => {
   const token = getUserTokenFromLocalStorage();
   try {
     await axios.put(
-      `posts/like/${postId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/posts/like/${postId}`,
       {},
       {
         headers: {
@@ -72,7 +78,7 @@ const createNewPost = async (desc, imgUrl) => {
   try {
     const token = getUserTokenFromLocalStorage();
     const { data, status } = await axios.post(
-      "/posts/",
+      `${process.env.REACT_APP_BACKEND_URL}/posts/`,
       {
         desc,
         image: imgUrl,
@@ -91,10 +97,29 @@ const createNewPost = async (desc, imgUrl) => {
   }
 };
 
+const addComment = async (data, postId) => {
+  console.log(data, postId);
+  try {
+    const token = getUserTokenFromLocalStorage();
+    const res = await axios.put(
+      `http://localhost:3300/api/posts/comments/${postId}`,
+      data,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export {
   getAllPosts,
   getUserAllPosts,
   likeDislikePost,
   uploadImage,
   createNewPost,
+  addComment,
 };

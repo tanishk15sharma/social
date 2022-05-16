@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { likeDislikePost } from "../utils/posts";
 import { useSelector } from "react-redux";
+import { PostComments } from "./PostComments";
 const PostCard = ({ post }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const { auth } = useSelector((state) => state);
+  const [showComments, setShowComments] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -51,13 +53,18 @@ const PostCard = ({ post }) => {
       </section>
       <section className="flex justify-between mt-2 text-grayLight font-thin">
         <div className="flex">
-          <button onClick={likeHandler}>
+          <button onClick={likeHandler} className="cursour-pointer">
             <span className="material-icons mr-1">favorite_border</span>
           </button>
           {like}
         </div>
-        <div className="flex">
-          <span className="material-icons-outlined">mode_comment</span>
+        <div className="flex ">
+          <button
+            onClick={() => setShowComments(!showComments)}
+            className="cursour-pointer"
+          >
+            <span className="material-icons-outlined">mode_comment</span>
+          </button>
           {post.comments.length}
         </div>
         <div className="flex">
@@ -67,6 +74,11 @@ const PostCard = ({ post }) => {
           <span className="material-icons mr-1">share</span>
         </div>
       </section>
+      {showComments ? (
+        <PostComments postId={post._id} comments={post.comments} />
+      ) : (
+        ""
+      )}
     </main>
   );
 };
