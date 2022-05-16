@@ -3,7 +3,9 @@ import { getUserTokenFromLocalStorage } from "../features/authSlice";
 
 const getUser = async (id) => {
   try {
-    const { data } = await axios.get(`/users/${id}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${id}`
+    );
     return data;
   } catch (err) {
     console.log(err);
@@ -13,7 +15,9 @@ const getUser = async (id) => {
 const getUserFollowing = async (userId) => {
   if (userId) {
     try {
-      const { data, status } = await axios.get(`/users/myFollowing/${userId}`);
+      const { data, status } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/users/myFollowing/${userId}`
+      );
       console.log(data);
       if (status === 200) {
         return data.followingList;
@@ -27,7 +31,9 @@ const getUserFollowing = async (userId) => {
 const getUserFollowers = async (userId) => {
   if (userId) {
     try {
-      const { data, status } = await axios.get(`/users/myFollowers/${userId}`);
+      const { data, status } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/users/myFollowers/${userId}`
+      );
 
       if (status === 200) {
         return data.followersList;
@@ -43,7 +49,7 @@ const followUnfollowUser = async (id, followed) => {
   try {
     if (followed) {
       await axios.put(
-        `/users/follow/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,
         {},
         {
           headers: {
@@ -53,7 +59,7 @@ const followUnfollowUser = async (id, followed) => {
       );
     } else {
       await axios.put(
-        `/users/unfollow/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/unfollow/${id}`,
         {},
         {
           headers: {

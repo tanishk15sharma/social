@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const PostComments = () => {
   const [writeComment, setWriteComment] = useState("");
-  console.log(writeComment);
+
   return (
     <div>
       <div className="flex  ml-4 ">
@@ -28,11 +28,6 @@ const PostComments = () => {
         </div>
         <p className="text-sm">this is taishk is an awesome</p>
       </div>
-      {/* <div>
-        <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center mr-2 items-center font-bold text-primary-900">
-          T Tanishk is a good boy
-        </div>
-      </div> */}
     </div>
   );
 };
