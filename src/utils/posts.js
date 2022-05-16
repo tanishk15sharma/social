@@ -102,7 +102,7 @@ const addComment = async (data, postId) => {
   try {
     const token = getUserTokenFromLocalStorage();
     const res = await axios.put(
-      `http://localhost:3300/api/posts/comments/${postId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/posts/comments/${postId}`,
       data,
       {
         headers: {

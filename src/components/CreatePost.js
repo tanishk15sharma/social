@@ -10,6 +10,7 @@ const CreatePost = ({ setPosts }) => {
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     setPosts((allPosts) => [...allPosts, newPost]);
+    setDesc("");
   };
   return (
     <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">

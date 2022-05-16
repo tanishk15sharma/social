@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getUser } from "../utils/user";
+
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 import { likeDislikePost } from "../utils/posts";
 import { useSelector } from "react-redux";
+import { PostComments } from "./PostComments";
 const PostCard = ({ post }) => {
-  const [user, setUser] = useState(null);
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const { auth } = useSelector((state) => state);
-
-  useEffect(() => {
-    (async () => {
-      const currentUser = await getUser(post.userId);
-      setUser(currentUser);
-    })();
-  }, [post.userId]);
-
-  // useEffect(() => {
-  //   setIsLiked(post.likes.includes(auth.id));
-  // }, []);
 
   const likeHandler = async () => {
     await likeDislikePost(post._id);
@@ -33,14 +23,15 @@ const PostCard = ({ post }) => {
       <div className="mb-1 flex  items-center">
         <Link to={`/profile/${post.userId}`}>
           <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
-            {user.name && user.name[0].toUpperCase()}
+            {post.userId.name && post.userId.name[0].toUpperCase()}
           </div>
         </Link>
         <div className="leading-5 ">
           <span>
-            {user.name}
+            {post.userId.name}
             <span className="block text-gray">
-              @{user.username} {format(post.createdAt)}{" "}
+              @{post.userId.username}{" "}
+              <span className="text-xs">{format(post.createdAt)} </span>
             </span>
           </span>
         </div>
@@ -57,7 +48,11 @@ const PostCard = ({ post }) => {
           {like}
         </div>
         <div className="flex">
-          <span className="material-icons-outlined">mode_comment</span>
+          <button
+            onClick={() => setShowComments((previousVal) => !previousVal)}
+          >
+            <span className="material-icons-outlined">mode_comment</span>
+          </button>
           {post.comments.length}
         </div>
         <div className="flex">
@@ -67,6 +62,9 @@ const PostCard = ({ post }) => {
           <span className="material-icons mr-1">share</span>
         </div>
       </section>
+      {showComments ? (
+        <PostComments comments={post.comments} postId={post._id} />
+      ) : null}
     </main>
   );
 };
