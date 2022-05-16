@@ -6,7 +6,7 @@ import axios from "axios";
 import { likeDislikePost } from "../utils/posts";
 import { useSelector } from "react-redux";
 const PostCard = ({ post }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const { auth } = useSelector((state) => state);

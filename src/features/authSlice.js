@@ -49,7 +49,7 @@ const authSlice = createSlice({
     },
     [postLoginDetails.fulfilled]: (state, { payload }) => {
       console.log(payload.data);
-      state = payload.data.data.user;
+      // state = payload.data.data.user;
       // state.username = payload.data.user.username;
       // state.name = payload.data.user.name;
       // state.bio = payload.data.user.bio;
