@@ -6,18 +6,18 @@ import axios from "axios";
 import { likeDislikePost } from "../utils/posts";
 import { useSelector } from "react-redux";
 const PostCard = ({ post }) => {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const { auth } = useSelector((state) => state);
 
-  useEffect(() => {
-    (async () => {
-      const currentUser = await getUser(post.userId);
-      setUser(currentUser);
-    })();
-  }, [post.userId]);
-
+  // useEffect(() => {
+  //   (async () => {
+  //     const currentUser = await getUser(post.userId);
+  //     setUser(currentUser);
+  //   })();
+  // }, [post.userId]);
+  console.log(post);
   // useEffect(() => {
   //   setIsLiked(post.likes.includes(auth.id));
   // }, []);
@@ -33,14 +33,14 @@ const PostCard = ({ post }) => {
       <div className="mb-1 flex  items-center">
         <Link to={`/profile/${post.userId}`}>
           <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
-            {user.name && user.name[0].toUpperCase()}
+            {/* {user.name && user.name[0].toUpperCase()} */}
           </div>
         </Link>
         <div className="leading-5 ">
           <span>
-            {user.name}
+            {/* {user.name} */}
             <span className="block text-gray">
-              @{user.username} {format(post.createdAt)}{" "}
+              {/* @{user.username} {format(post.createdAt)}{" "} */}
             </span>
           </span>
         </div>
