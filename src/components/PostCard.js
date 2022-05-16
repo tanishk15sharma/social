@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
     setIsLiked(!isLiked);
   };
-
+  console.log(post.comments);
   return (
     <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
       <div className="mb-1 flex  items-center">
@@ -74,7 +74,11 @@ const PostCard = ({ post }) => {
           <span className="material-icons mr-1">share</span>
         </div>
       </section>
-      {showComments ? <PostComments /> : ""}
+      {showComments ? (
+        <PostComments postId={post._id} comments={post.comments} />
+      ) : (
+        ""
+      )}
     </main>
   );
 };

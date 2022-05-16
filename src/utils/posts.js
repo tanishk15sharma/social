@@ -97,10 +97,29 @@ const createNewPost = async (desc, imgUrl) => {
   }
 };
 
+const addComment = async (data, postId) => {
+  console.log(data, postId);
+  try {
+    const token = getUserTokenFromLocalStorage();
+    const res = await axios.put(
+      `http://localhost:3300/api/posts/comments/${postId}`,
+      data,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export {
   getAllPosts,
   getUserAllPosts,
   likeDislikePost,
   uploadImage,
   createNewPost,
+  addComment,
 };
