@@ -11,7 +11,7 @@ const Profile = () => {
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
   const [followed, setFollowed] = useState(true);
   useEffect(() => {
     (async () => {
