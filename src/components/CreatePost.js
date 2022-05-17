@@ -8,17 +8,14 @@ const CreatePost = () => {
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const { user } = useSelector((state) => state.auth);
-  let allPostsData = useSelector((state) => state.posts.allPosts);
-  console.log(allPostsData);
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     newPost.userId = user;
-    // dispatch(addPosts(newPost));
-
-    // setPosts((allPosts) => [...allPosts, newPost]);
+    dispatch(addPosts(newPost));
     setDesc("");
   };
   return (

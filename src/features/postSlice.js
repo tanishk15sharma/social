@@ -6,9 +6,9 @@ const allPosts = createAsyncThunk("posts/allposts", async () => {
   return allPosts;
 });
 const userAllPosts = createAsyncThunk("posts/allUserposts", async (userId) => {
-  const alluserPosts = await getUserAllPosts(userId);
-  console.log(alluserPosts);
-  return alluserPosts;
+  const posts = await getUserAllPosts(userId);
+  console.log(posts);
+  return posts;
 });
 const postsSlice = createSlice({
   name: "allposts",
@@ -17,9 +17,8 @@ const postsSlice = createSlice({
     allPosts: [],
   },
   reducers: {
-    addPosts: (state, action) => {
-      console.log(action.payload);
-      state.allPosts = [action.payload, ...state.allPosts];
+    addPosts: (state, { payload }) => {
+      state.allPosts = [payload, ...state.allPosts];
     },
   },
   extraReducers: {
@@ -27,6 +26,13 @@ const postsSlice = createSlice({
       state.loading = true;
     },
     [allPosts.fulfilled]: (state, { payload }) => {
+      state.allPosts = payload;
+      state.loading = false;
+    },
+    [userAllPosts.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [userAllPosts.fulfilled]: (state, { payload }) => {
       state.allPosts = payload;
       state.loading = false;
     },
