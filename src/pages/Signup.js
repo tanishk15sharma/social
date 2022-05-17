@@ -5,8 +5,8 @@ import { validSignUp } from "../utils/auth";
 const Signup = () => {
   const dispatch = useDispatch();
 
-  const userDetails = useSelector((state) => state);
-  console.log(userDetails.auth);
+  const loggedUser = useSelector((state) => state.auth);
+  // console.log(userDetails.auth);
 
   const [signUpData, setSignUpData] = useState({
     name: "",
@@ -181,7 +181,7 @@ const Signup = () => {
             </span>
           )}
           <button className="bg-gradient-to-r px-5  rounded-md w-full block ease-in-out duration-300 from-primary-400 to-primary-600 p-1 text-white hover:-translate-y-0.5 hover:shadow-md">
-            SIGNUP
+            {loggedUser.status === "loading" ? "loading" : "SIGNUP"}
           </button>
         </form>
       </div>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.auth);
-  console.log(loggedUser);
+  // console.log(loggedUser);
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [loginErrors, setLoginErrors] = useState({
     username: "",
