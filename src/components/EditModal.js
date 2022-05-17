@@ -94,6 +94,16 @@ const EditModal = ({ setToggleEditModal }) => {
                 onChange={inputHandler}
               />
             </label>
+
+            <button
+              onClick={updateUserBtn}
+              type="button"
+              className="text-white text-center w-100    opacity-80  dark:focus:ring-primary-800 font-medium  hover:opacity-100 float-right  px-5 py-1 rounded-md text-center mb-4 mt-4"
+            >
+              <span className="text-black border-primary-800 border p-1 rounded pr-3 pl-3">
+                Delete A/C
+              </span>
+            </button>
             <button
               onClick={updateUserBtn}
               type="button"
