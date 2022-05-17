@@ -14,7 +14,8 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
 
-  const [followed, setFollowed] = useState(true);
+  const [followed, setFollowed] = useState(false);
+
   useEffect(() => {
     (async () => {
       const newUser = await getUser(paramsUserId);
@@ -23,6 +24,10 @@ const Profile = () => {
   }, [paramsUserId]);
 
   const handleClick = () => followUnfollowUser(user._id, followed);
+  useEffect(() => {
+    setFollowed(loggedUser?.user.following.includes(user?._id));
+  }, [user._id, loggedUser]);
+  console.log(followed);
 
   return (
     <div>
