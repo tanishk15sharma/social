@@ -24,9 +24,6 @@ const Profile = () => {
   }, [paramsUserId]);
 
   const handleClick = () => followUnfollowUser(user._id, followed);
-  useEffect(() => {
-    setFollowed(loggedUser?.user.following.includes(user?._id));
-  }, [user._id, loggedUser]);
 
   return (
     <div>
