@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { uploadImage } from "../utils/posts";
-import { getUpdateUser } from "../utils/user";
+import { deleteUser, getUpdateUser } from "../utils/user";
 
 const EditModal = ({ setToggleEditModal }) => {
   const { user } = useSelector((state) => state.auth);
@@ -96,7 +96,7 @@ const EditModal = ({ setToggleEditModal }) => {
             </label>
 
             <button
-              onClick={updateUserBtn}
+              onClick={deleteUser}
               type="button"
               className="text-white text-center w-100    opacity-80  dark:focus:ring-primary-800 font-medium  hover:opacity-100 float-right  px-5 py-1 rounded-md text-center mb-4 mt-4"
             >
