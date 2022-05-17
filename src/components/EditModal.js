@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { uploadImage } from "../utils/posts";
+import { getUpdateUser } from "../utils/user";
 
 const EditModal = ({ setToggleEditModal }) => {
   const { user } = useSelector((state) => state.auth);
@@ -26,7 +27,7 @@ const EditModal = ({ setToggleEditModal }) => {
       ...previousVal,
       profileImage: imageUrl,
     }));
-    console.log(imageUrl);
+    getUpdateUser(userDetails);
   };
 
   return (
