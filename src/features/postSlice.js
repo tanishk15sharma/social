@@ -13,18 +13,18 @@ const userAllPosts = createAsyncThunk("posts/allposts", async (userId) => {
 const postsSlice = createSlice({
   name: "allposts",
   initialState: {
-    status: "",
+    loading: false,
     allPosts: [],
   },
   reducers: {},
   extraReducers: {
     [allPosts.pending]: (state, action) => {
-      state.status = "loading";
+      state.loading = true;
     },
     [allPosts.fulfilled]: (state, { payload }) => {
       console.log(payload);
       state.allPosts = payload;
-      state.status = "";
+      state.loading = false;
     },
   },
 });
