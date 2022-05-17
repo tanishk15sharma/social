@@ -57,6 +57,9 @@ const likeDislikePost = async (postId) => {
 };
 
 const uploadImage = async (imageFile) => {
+  if (!imageFile) {
+    return;
+  }
   try {
     const uploadData = new FormData();
     uploadData.append("file", imageFile);

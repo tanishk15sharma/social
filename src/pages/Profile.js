@@ -27,7 +27,6 @@ const Profile = () => {
   useEffect(() => {
     setFollowed(loggedUser?.user.following.includes(user?._id));
   }, [user._id, loggedUser]);
-  console.log(followed);
 
   return (
     <div>
