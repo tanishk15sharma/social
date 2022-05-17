@@ -3,12 +3,11 @@ import { getAllPosts, getUserAllPosts } from "../utils/posts";
 
 const allPosts = createAsyncThunk("posts/allposts", async () => {
   const allPosts = await getAllPosts();
-  //   console.log(allPosts);
   return allPosts;
 });
 const userAllPosts = createAsyncThunk("posts/allposts", async (userId) => {
   const alluserPosts = await getUserAllPosts(userId);
-  console.log(alluserPosts);
+  return alluserPosts;
 });
 const postsSlice = createSlice({
   name: "allposts",

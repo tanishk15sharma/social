@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const Feed = ({ userId }) => {
         <h1>loading</h1>
       ) : (
         <>
-          {!userId && <CreatePost setPosts={setPosts} />}
+          {!userId && <CreatePost />}
           {allPostsData.allPosts?.map((post) => (
             <PostCard post={post} key={post._id} />
           ))}
