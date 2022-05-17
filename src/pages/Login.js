@@ -5,8 +5,8 @@ import { validLogin } from "../utils/auth";
 import { Link } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state);
-  console.log(userDetails.auth);
+  const loggedUser = useSelector((state) => state.auth);
+  console.log(loggedUser);
   const [loginData, setLoginData] = useState({ username: "", password: "" });
   const [loginErrors, setLoginErrors] = useState({
     username: "",
@@ -82,7 +82,7 @@ const Login = () => {
           )}
 
           <button className="bg-gradient-to-r mt-5  w-full block ease-in-out duration-300 from-primary-400 to-primary-600 p-1 text-white hover:-translate-y-0.5 hover:shadow-md">
-            LOGIN
+            {loggedUser.status === "loading" ? "loading" : "LOGIN"}
           </button>
           <button
             onClick={testLoginHandler}

@@ -13,10 +13,10 @@ const Feed = ({ userId }) => {
       setPosts(allPosts);
     })();
   }, [userId]);
-
+  console.log(posts);
   return (
     <div className="m-3  mr-8">
-      <CreatePost setPosts={setPosts} />
+      {!userId && <CreatePost setPosts={setPosts} />}
       {posts?.map((post) => (
         <PostCard post={post} key={post._id} />
       ))}

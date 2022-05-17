@@ -34,7 +34,7 @@ const postSignupDetails = createAsyncThunk(
         `${process.env.REACT_APP_BACKEND_URL}/auth/register`,
         signupData
       );
-
+      console.log(data);
       if (status === 201) {
         return data;
       }
@@ -47,47 +47,37 @@ const postSignupDetails = createAsyncThunk(
 
 const authSlice = createSlice({
   name: "authentication",
-  initialState: {},
+  initialState: {
+    status: "",
+    user: {},
+  },
   reducers: {},
   extraReducers: {
-    [postLoginDetails.pending]: () => {
+    [postLoginDetails.pending]: (state, action) => {
+      state.status = "loading";
       console.log("login pending");
     },
     [postLoginDetails.fulfilled]: (state, { payload }) => {
-      console.log(payload.data);
-      // state = payload.data.data.user;
-      // state.username = payload.data.user.username;
-      // state.name = payload.data.user.name;
-      // state.bio = payload.data.user.bio;
-      // state.profileImage = payload.data.user.profileImage;
-      // state.profileCover = payload.data.user.profileCover;
-      // // state.bookmark = payload.user.bookmarks;
-      // state.followers = payload.data.user.followers;
-      // state.following = payload.data.user.following;
+      state.status = "login successful";
+      state.user = payload.data.user;
       localStorage.setItem("userToken", payload.data.token);
     },
     [postLoginDetails.rejected]: (state, { error }) => {
-      console.log("login failed ,try again");
+      state.status = "Login failed , try again";
       console.log(error.message);
     },
-    [postSignupDetails.pending]: () => {
-      console.log(" signup pending");
+    [postSignupDetails.pending]: (state, action) => {
+      state.status = "loading";
+      // console.log("signup pending");
     },
     [postSignupDetails.fulfilled]: (state, { payload }) => {
-      state = payload.data;
-
-      // state.username = payload.user.username;
-      // state.name = payload.user.name;
-      // state.bio = payload.user.bio;
-      // state.profileImage = payload.user.profileImage;
-      // state.profileCover = payload.user.profileCover;
-      // // state.bookmark = payload.user.bookmarks;
-      // state.followers = payload.user.followers;
-      // state.following = payload.user.following;
+      // console.log(payload);
+      state.status = "login successful";
+      state.user = payload.user;
       localStorage.setItem("userToken", payload.token);
     },
     [postSignupDetails.rejected]: (state, { error }) => {
-      console.log("signup failed ,try again");
+      state.status = "Login failed , try again";
       console.log(error.message);
     },
   },
