@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { createNewPost, uploadImage } from "../utils/posts";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addPosts } from "../features/postSlice";
 
-const CreatePost = ({ setPosts }) => {
+const CreatePost = () => {
+  const dispatch = useDispatch();
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const { user } = useSelector((state) => state.auth);
-
+  let allPostsData = useSelector((state) => state.posts.allPosts);
+  console.log(allPostsData);
   const submitHandler = async (e) => {
     e.preventDefault();
 
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     newPost.userId = user;
-    setPosts((allPosts) => [...allPosts, newPost]);
+    // dispatch(addPosts(newPost));
+
+    // setPosts((allPosts) => [...allPosts, newPost]);
     setDesc("");
   };
   return (
