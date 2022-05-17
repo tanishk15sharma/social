@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { createNewPost, uploadImage } from "../utils/posts";
+import { useSelector } from "react-redux";
+
 const CreatePost = ({ setPosts }) => {
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const { user } = useSelector((state) => state.auth);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -16,12 +19,12 @@ const CreatePost = ({ setPosts }) => {
     <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
       <div className="mb-1 flex  items-center ">
         <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
-          T
+          {user.name && user.name[0].toUpperCase()}
         </div>
 
         <div className="leading-5 w-full pl-2">
           <input
-            placeholder="hey username share your... !"
+            placeholder={`hey ${user.name} share your... !`}
             className="w-full focus:outline-none"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}

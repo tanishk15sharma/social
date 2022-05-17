@@ -6,12 +6,14 @@ import { useParams } from "react-router";
 import { followUnfollowUser, getUser } from "../utils/user";
 import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const loggedUser = useSelector((state) => state.auth);
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
-  const [isUser, setIsUser] = useState(true);
+
   const [followed, setFollowed] = useState(true);
   useEffect(() => {
     (async () => {
@@ -38,7 +40,7 @@ const Profile = () => {
             <div className="text-left   mt-10 m-8 ">
               <span className="font-bold text-xl flex items-center">
                 {user.name}
-                {isUser ? (
+                {loggedUser.user._id === paramsUserId ? (
                   <button
                     className="flex cursor-pointer"
                     onClick={() => setToggleEditModal(true)}

@@ -13,7 +13,7 @@ const Feed = ({ userId }) => {
       setPosts(allPosts);
     })();
   }, [userId]);
-  console.log(posts);
+
   return (
     <div className="m-3  mr-8">
       {!userId && <CreatePost setPosts={setPosts} />}

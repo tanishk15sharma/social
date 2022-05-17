@@ -1,16 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
-  const userDetails = useSelector((state) => state);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <div className="ml-12 sticky top-20 z-10 w-1/5">
       <ul className="m-3">
-        <li className="flex my-5 text-xl items-center">
-          <span className="material-icons mr-4">roofing</span>
-          <span>Home</span>
-        </li>
+        <Link to="/">
+          <li className="flex my-5 text-xl items-center">
+            <span className="material-icons mr-4">roofing</span>
+            <span>Home</span>
+          </li>
+        </Link>
         <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">tag</span>
           <span>Explore</span>
@@ -23,12 +26,12 @@ const SideNav = () => {
           <span className="material-icons mr-4">bookmark_border</span>
           <span>Bookmarks</span>
         </li>
-        {/* <Link to={`/profile/${post.userId}`}> */}
-        <li className="flex my-5 text-xl items-center">
-          <span className="material-icons mr-4">person_outline</span>
-          <span>Profile</span>
-        </li>
-        {/* </Link> */}
+        <Link to={`/profile/${user._id}`}>
+          <li className="flex my-5 text-xl items-center">
+            <span className="material-icons mr-4">person_outline</span>
+            <span>Profile</span>
+          </li>
+        </Link>
         <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">tune</span>
           <span>Settings</span>
