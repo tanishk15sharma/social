@@ -12,6 +12,7 @@ const CreatePost = ({ setPosts }) => {
 
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
+    newPost.userId = user;
     setPosts((allPosts) => [...allPosts, newPost]);
     setDesc("");
   };
