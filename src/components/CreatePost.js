@@ -3,7 +3,7 @@ import { createNewPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts } from "../features/postSlice";
 
-const CreatePost = () => {
+const CreatePost = ({ editDetails }) => {
   const dispatch = useDispatch();
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
@@ -32,7 +32,7 @@ const CreatePost = () => {
           <input
             placeholder={`hey ${user.name} share your... !`}
             className="w-full focus:outline-none"
-            value={desc}
+            value={editDetails ? editDetails.desc : desc}
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
@@ -60,7 +60,7 @@ const CreatePost = () => {
           type="submit"
           className="text-white text-center w-100 bg-gradient-to-br from-primary-500 to-primary-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-primary-200 hover:shadow-md  dark:focus:ring-primary-800 font-medium rounded opacity-70  text-sm  px-5 py-2.5 text-center mr-2 mb-2 hover:opacity-90"
         >
-          Post
+          {editDetails ? "Edit" : "Post"}
         </button>
       </form>
     </div>

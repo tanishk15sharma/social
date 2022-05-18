@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
-
 import { likeDislikePost } from "../utils/posts";
-import { useSelector } from "react-redux";
+
 import { PostComments } from "./PostComments";
+import { CreatePostModal } from "./CreatePostModal";
+
 const PostCard = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const { auth } = useSelector((state) => state);
+  const [editModal, setEditModal] = useState(false);
   const [postOptions, setPostOptions] = useState(false);
 
   const likeHandler = async () => {
@@ -50,7 +50,8 @@ const PostCard = ({ post }) => {
               postOptions ? "block" : "hidden"
             }`}
           >
-            <button>EDIT</button>
+            <button onClick={() => setEditModal(true)}>EDIT</button>
+
             <button>DELETE</button>
           </div>
         </div>
@@ -81,9 +82,10 @@ const PostCard = ({ post }) => {
           <span className="material-icons mr-1">share</span>
         </div>
       </section>
-      {showComments ? (
+      {showComments && (
         <PostComments comments={post.comments} postId={post._id} />
-      ) : null}
+      )}
+      {editModal && <CreatePostModal editDetails={post} />}
     </main>
   );
 };

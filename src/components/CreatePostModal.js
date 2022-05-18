@@ -2,7 +2,7 @@ import React from "react";
 
 import { CreatePost } from "./CreatePost";
 
-const CreatePostModal = ({ setTogglePostModal }) => {
+const CreatePostModal = ({ setTogglePostModal, editDetails }) => {
   return (
     <section
       onClick={() => setTogglePostModal((preVal) => !preVal)}
@@ -12,7 +12,7 @@ const CreatePostModal = ({ setTogglePostModal }) => {
         className="bg-white w-5/12 min-w-96 rounded-md drop-shadow-xl mt-28"
         onClick={(e) => e.stopPropagation()}
       >
-        <CreatePost />
+        <CreatePost editDetails={editDetails} />
       </main>
     </section>
   );
