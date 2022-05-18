@@ -20,19 +20,26 @@ const PostCard = ({ post }) => {
 
   return (
     <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
-      <div className="mb-1 flex  items-center">
-        <Link to={`/profile/${post.userId._id}`}>
-          <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
-            {post.userId.name && post.userId.name[0].toUpperCase()}
-          </div>
-        </Link>
-        <div className="leading-5 ">
-          <span>
-            {post.userId.name}
-            <span className="block text-gray">
-              @{post.userId.username}{" "}
-              <span className="text-xs">{format(post.createdAt)} </span>
+      <div className="mb-1 flex justify-between items-center">
+        <div className="flex items-center">
+          <Link to={`/profile/${post.userId._id}`}>
+            <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
+              {post.userId.name && post.userId.name[0].toUpperCase()}
+            </div>
+          </Link>
+          <div className="leading-5 ">
+            <span>
+              {post.userId.name}
+              <span className="block text-gray ">
+                @{post.userId.username}{" "}
+                <span className="text-xs">{format(post.createdAt)} </span>
+              </span>
             </span>
+          </div>
+        </div>
+        <div>
+          <span className="material-icons-outlined text-grayLight">
+            more_vert
           </span>
         </div>
       </div>

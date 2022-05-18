@@ -73,4 +73,50 @@ const followUnfollowUser = async (id, followed) => {
   }
 };
 
-export { getUser, getUserFollowing, getUserFollowers, followUnfollowUser };
+const getUpdateUser = async (data) => {
+  const token = getUserTokenFromLocalStorage();
+
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/users/edit`,
+      {
+        data,
+      },
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteUser = async () => {
+  const token = getUserTokenFromLocalStorage();
+
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/users/delete`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getUser,
+  getUserFollowing,
+  getUserFollowers,
+  followUnfollowUser,
+  getUpdateUser,
+  deleteUser,
+};

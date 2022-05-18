@@ -7,7 +7,7 @@ const allPosts = createAsyncThunk("posts/allposts", async () => {
 });
 const userAllPosts = createAsyncThunk("posts/allUserposts", async (userId) => {
   const posts = await getUserAllPosts(userId);
-  console.log(posts);
+
   return posts;
 });
 const postsSlice = createSlice({
