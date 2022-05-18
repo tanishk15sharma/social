@@ -64,12 +64,12 @@ const CreatePost = () => {
           Post
         </button>
       </form>
-      <PostModal
+      {/* <PostModal
         desc={desc}
         setDesc={setDesc}
         submitHandler={submitHandler}
         setImageFile={setImageFile}
-      />
+      /> */}
     </div>
   );
 };
