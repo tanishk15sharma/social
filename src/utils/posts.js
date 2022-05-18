@@ -130,6 +130,25 @@ const editPost = async (postId, desc) => {
         },
       }
     );
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deletePost = async (postId) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+
+    const res = axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/${postId}`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    console.log(res);
   } catch (err) {
     console.log(err);
   }
@@ -143,4 +162,5 @@ export {
   createNewPost,
   addComment,
   editPost,
+  deletePost,
 };
