@@ -148,7 +148,7 @@ const deletePost = async (postId) => {
         },
       }
     );
-    console.log(res);
+    return res;
   } catch (err) {
     console.log(err);
   }

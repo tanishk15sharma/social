@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { deletePost, likeDislikePost } from "../utils/posts";
-
+import { useDispatch } from "react-redux";
 import { PostComments } from "./PostComments";
 import { CreatePostModal } from "./CreatePostModal";
+import { removePostFromAllPost } from "../features/postSlice";
 
 const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -52,7 +54,14 @@ const PostCard = ({ post }) => {
           >
             <button onClick={() => setEditModal(true)}>EDIT</button>
 
-            <button onClick={() => deletePost(post._id)}>DELETE</button>
+            <button
+              onClick={async () => {
+                await deletePost(post._id);
+                dispatch(removePostFromAllPost(post._id));
+              }}
+            >
+              DELETE
+            </button>
           </div>
         </div>
       </div>
