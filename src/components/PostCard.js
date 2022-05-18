@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
-import { likeDislikePost } from "../utils/posts";
+import { deletePost, likeDislikePost } from "../utils/posts";
 
 import { PostComments } from "./PostComments";
 import { CreatePostModal } from "./CreatePostModal";
@@ -52,7 +52,7 @@ const PostCard = ({ post }) => {
           >
             <button onClick={() => setEditModal(true)}>EDIT</button>
 
-            <button>DELETE</button>
+            <button onClick={() => deletePost(post._id)}>DELETE</button>
           </div>
         </div>
       </div>

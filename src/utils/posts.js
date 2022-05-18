@@ -140,7 +140,7 @@ const deletePost = async (postId) => {
   try {
     const token = getUserTokenFromLocalStorage();
 
-    const res = axios.delete(
+    const res = await axios.delete(
       `${process.env.REACT_APP_BACKEND_URL}/posts/${postId}`,
       {
         headers: {
