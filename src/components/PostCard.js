@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
@@ -13,11 +13,11 @@ const PostCard = ({ post }) => {
   const { auth } = useSelector((state) => state);
 
   const likeHandler = async () => {
-    await likeDislikePost(post._id);
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
+    await likeDislikePost(post._id);
     setIsLiked(!isLiked);
   };
-
+  console.log(post);
   return (
     <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
       <div className="mb-1 flex justify-between items-center">

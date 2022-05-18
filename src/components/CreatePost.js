@@ -11,7 +11,9 @@ const CreatePost = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    if (!desc.length) {
+      return alert("please write something");
+    }
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     newPost.userId = user;
