@@ -11,6 +11,7 @@ const PostCard = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const { auth } = useSelector((state) => state);
+  const [postOptions, setPostOptions] = useState(false);
 
   const likeHandler = async () => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
@@ -20,7 +21,7 @@ const PostCard = ({ post }) => {
   console.log(post);
   return (
     <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
-      <div className="mb-1 flex justify-between items-center">
+      <div className="mb-1 flex justify-between items-center relative">
         <div className="flex items-center">
           <Link to={`/profile/${post.userId._id}`}>
             <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
@@ -38,9 +39,20 @@ const PostCard = ({ post }) => {
           </div>
         </div>
         <div>
-          <span className="material-icons-outlined text-grayLight">
+          <span
+            className="material-icons-outlined text-grayLight cursor-pointer hover:text-black"
+            onClick={() => setPostOptions(!postOptions)}
+          >
             more_vert
           </span>
+          <div
+            className={`flex flex-col items-start p-2 absolute right-2 bg-primary-50 ${
+              postOptions ? "block" : "hidden"
+            }`}
+          >
+            <button>EDIT</button>
+            <button>DELETE</button>
+          </div>
         </div>
       </div>
       <section>
