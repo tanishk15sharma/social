@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createNewPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts } from "../features/postSlice";
+import { PostModal } from "./PostModal";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,6 @@ const CreatePost = () => {
           />
         </div>
       </div>
-
       <form
         className="text-grayLight flex justify-between mt-2 p-4 items-center"
         onSubmit={submitHandler}
@@ -63,6 +63,7 @@ const CreatePost = () => {
           Post
         </button>
       </form>
+      <PostModal desc={desc} setDesc={setDesc} />
     </div>
   );
 };
