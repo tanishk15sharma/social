@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createNewPost, uploadImage } from "../utils/posts";
+import { createNewPost, editPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts } from "../features/postSlice";
 
@@ -13,6 +13,9 @@ const CreatePost = ({ editDetails }) => {
     e.preventDefault();
     if (!desc.length) {
       return alert("please write something");
+    }
+    if (editDetails) {
+      return editPost(editDetails._id, desc);
     }
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);

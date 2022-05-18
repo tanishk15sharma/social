@@ -118,6 +118,23 @@ const addComment = async (data, postId) => {
   }
 };
 
+const editPost = async (postId, desc) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+    const res = await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/${postId}`,
+      { desc },
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export {
   getAllPosts,
   getUserAllPosts,
@@ -125,4 +142,5 @@ export {
   uploadImage,
   createNewPost,
   addComment,
+  editPost,
 };
