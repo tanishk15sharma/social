@@ -18,6 +18,7 @@ const CreatePost = () => {
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     newPost.userId = user;
+    console.log(newPost);
     dispatch(addPosts(newPost));
     setDesc("");
   };
@@ -63,7 +64,12 @@ const CreatePost = () => {
           Post
         </button>
       </form>
-      <PostModal desc={desc} setDesc={setDesc} />
+      <PostModal
+        desc={desc}
+        setDesc={setDesc}
+        submitHandler={submitHandler}
+        setImageFile={setImageFile}
+      />
     </div>
   );
 };

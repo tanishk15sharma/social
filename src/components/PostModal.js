@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const PostModal = ({ desc, setDesc }) => {
+const PostModal = ({ desc, setDesc, setImageFile, submitHandler }) => {
   const { user } = useSelector((state) => state.auth);
 
   return (
@@ -23,7 +23,7 @@ const PostModal = ({ desc, setDesc }) => {
         </div>
         <form
           className="text-grayLight flex justify-between mt-2 p-4 items-center"
-          // onSubmit={submitHandler}
+          onSubmit={submitHandler}
         >
           <div>
             <label htmlFor="imageFile" className="cursor-pointer">
@@ -33,7 +33,7 @@ const PostModal = ({ desc, setDesc }) => {
                 id="imageFile"
                 accept=".png,.jpeg,.jpg"
                 className="hidden"
-                //   onChange={(e) => setImageFile(e.target.files[0])}
+                onChange={(e) => setImageFile(e.target.files[0])}
               />
             </label>
             <span className="material-icons-outlined ml-2">
