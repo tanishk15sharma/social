@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { createNewPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts } from "../features/postSlice";
-import { PostModal } from "./PostModal";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const CreatePost = () => {
     setDesc("");
   };
   return (
-    <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
+    <div className="p-4 px-9 shadow-xl rounded-xl  mt-3">
       <div className="mb-1 flex  items-center ">
         <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
           {user.name && user.name[0].toUpperCase()}
@@ -64,12 +63,6 @@ const CreatePost = () => {
           Post
         </button>
       </form>
-      {/* <PostModal
-        desc={desc}
-        setDesc={setDesc}
-        submitHandler={submitHandler}
-        setImageFile={setImageFile}
-      /> */}
     </div>
   );
 };
