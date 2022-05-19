@@ -1,38 +1,49 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getUserTokenFromLocalStorage } from "./authSlice";
 
-// const getUsers = createAsyncThunk("get/users", async () => {
-//   try {
-//     const response = await axios.get("/api/users");
-//     if (response.status === 200) {
-//       return response.data;
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     return Promise.reject(err);
-//   }
-// });
+const getAllUsers = createAsyncThunk("users/getAllUsers", async () => {
+  const token = getUserTokenFromLocalStorage();
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/users/allUsers`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(err);
+  }
+});
 
 const initialState = {
-  usersArr: [],
+  allUsers: [],
+  loading: false,
 };
 const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
   extraReducers: {
-    // [getUsers.pending]: () => {
-    //   console.log("pending");
-    // },
-    // [getUsers.fulfilled]: (state, { payload }) => {
-    //   console.log(state, payload);
-    //   state.usersArr = payload.users;
-    // },
-    // [getUsers.rejected]: (state, action) => {
-    //   console.log(action.error.message);
-    // },
+    [getAllUsers.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getAllUsers.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.allUsers = payload;
+    },
+    [getAllUsers.rejected]: (state, { error }) => {
+      state.loading = false;
+      console.log(error.message);
+    },
   },
 });
 
 export default usersSlice.reducer;
-// export { getUsers };
+export { getAllUsers };

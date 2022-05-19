@@ -22,13 +22,13 @@ const PostCard = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [postOptions, setPostOptions] = useState(false);
-  console.log(user);
+
   const likeHandler = async () => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
     setIsLiked(!isLiked);
     await likeDislikePost(post._id);
   };
-  console.log(post);
+
   return (
     <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
       <div className="mb-1 flex justify-between items-center relative">
@@ -81,7 +81,7 @@ const PostCard = ({ post }) => {
         <div className="flex">
           <button onClick={likeHandler}>
             {isLiked ? (
-              <span class="material-icons-outlined text-red">favorite</span>
+              <span className="material-icons-outlined text-red">favorite</span>
             ) : (
               <span className="material-icons mr-1">favorite_border</span>
             )}

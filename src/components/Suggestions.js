@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { getUsers } from "../features/usersSlice";
+import { getAllUsers } from "../features/usersSlice";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getUsers());
+    dispatch(getAllUsers());
   }, []);
+  const { allUsers, loading } = useSelector((state) => state.users);
 
   return (
     <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-9/12">
