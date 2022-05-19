@@ -18,7 +18,7 @@ const PostCard = ({ post }) => {
   const [editModal, setEditModal] = useState(false);
   const [postOptions, setPostOptions] = useState(false);
   const bookmarks = useSelector((state) => state.bookmarks);
-  console.log(bookmarks.loading);
+
   const likeHandler = async () => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
     await likeDislikePost(post._id);

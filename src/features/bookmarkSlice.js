@@ -5,7 +5,7 @@ import { getUserTokenFromLocalStorage } from "./authSlice";
 const getAllBookmarks = createAsyncThunk("bookmarks/allBookmarks", async () => {
   try {
     const token = getUserTokenFromLocalStorage();
-    const res = await axios.get(
+    const { data, status } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/users/bookmarks`,
       {
         headers: {
@@ -13,7 +13,9 @@ const getAllBookmarks = createAsyncThunk("bookmarks/allBookmarks", async () => {
         },
       }
     );
-    console.log(res);
+    if (status === 200) {
+      return data;
+    }
   } catch (err) {
     console.log(err);
     return Promise.reject(err);
@@ -59,6 +61,16 @@ const bookmarksSlice = createSlice({
       state.loading = false;
     },
     [addRemoveBookmark.rejected]: (state, action) => {
+      state.loading = false;
+    },
+    [getAllBookmarks.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getAllBookmarks.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.bookmarks = payload.bookmarks.bookmarks;
+    },
+    [getAllBookmarks.rejected]: (state, { payload }) => {
       state.loading = false;
     },
   },

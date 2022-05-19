@@ -23,10 +23,12 @@ const SideNav = () => {
           <span className="material-icons mr-4">notifications_none</span>
           <span>Notifications</span>
         </li>
-        <li className="flex  my-5 text-xl items-center">
-          <span className="material-icons mr-4">bookmark_border</span>
-          <span>Bookmarks</span>
-        </li>
+        <Link to="/bookmarks">
+          <li className="flex  my-5 text-xl items-center">
+            <span className="material-icons mr-4">bookmark_border</span>
+            <span>Bookmarks</span>
+          </li>
+        </Link>
         <Link to={`/profile/${user._id}`}>
           <li className="flex my-5 text-xl items-center">
             <span className="material-icons mr-4">person_outline</span>
