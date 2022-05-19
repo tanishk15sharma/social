@@ -20,7 +20,7 @@ const CreatePost = ({ editDetails }) => {
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     newPost.userId = user;
-    console.log(newPost);
+
     dispatch(addPosts(newPost));
     setDesc("");
   };

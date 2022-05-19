@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { deletePost, likeDislikePost } from "../utils/posts";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import { PostComments } from "./PostComments";
 import { CreatePostModal } from "./CreatePostModal";
 import { removePostFromAllPost } from "../features/postSlice";
+import {
+  addRemoveBookmark,
+  removePostFromBookmark,
+} from "../features/bookmarkSlice";
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
@@ -14,6 +20,7 @@ const PostCard = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [postOptions, setPostOptions] = useState(false);
+  const { bookmarks, loading } = useSelector((state) => state.bookmarks);
 
   const likeHandler = async () => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
@@ -85,7 +92,30 @@ const PostCard = ({ post }) => {
           {post.comments.length}
         </div>
         <div className="flex">
-          <span className="material-icons mr-1">bookmark_border</span>
+          {bookmarks.some(
+            (bookmarkedPost) => bookmarkedPost._id === post._id
+          ) ? (
+            <button
+              onClick={() => {
+                dispatch(addRemoveBookmark(post._id));
+                dispatch(removePostFromBookmark(post._id));
+              }}
+            >
+              <span className="material-icons-outlined text-primary-700">
+                bookmark
+              </span>
+            </button>
+          ) : (
+            <button onClick={() => dispatch(addRemoveBookmark(post._id))}>
+              <span
+                className={`material-icons mr-1  ${
+                  loading && "text-primary-700"
+                }`}
+              >
+                bookmark_border
+              </span>
+            </button>
+          )}
         </div>
         <div className="flex">
           <span className="material-icons mr-1">share</span>
