@@ -23,6 +23,11 @@ const postsSlice = createSlice({
     removePostFromAllPost: (state, { payload }) => {
       state.allPosts = state.allPosts.filter((post) => post._id !== payload);
     },
+    editPosts: (state, { payload }) => {
+      state.allPosts.forEach((post, index) =>
+        post._id === payload._id ? (state.allPosts[index] = payload) : ""
+      );
+    },
   },
   extraReducers: {
     [allPosts.pending]: (state, action) => {
@@ -42,6 +47,7 @@ const postsSlice = createSlice({
   },
 });
 
-export const { addPosts, removePostFromAllPost } = postsSlice.actions;
+export const { addPosts, removePostFromAllPost, editPosts } =
+  postsSlice.actions;
 export default postsSlice.reducer;
 export { allPosts, userAllPosts };

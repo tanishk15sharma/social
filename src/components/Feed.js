@@ -9,7 +9,7 @@ const Feed = ({ userId }) => {
     userId ? dispatch(userAllPosts(userId)) : dispatch(allPosts());
   }, [userId]);
   const allPostsData = useSelector((state) => state.posts);
-
+  console.log(allPostsData);
   return (
     <div className="m-3  mr-8">
       {allPostsData.loading ? (

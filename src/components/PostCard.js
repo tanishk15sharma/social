@@ -124,7 +124,12 @@ const PostCard = ({ post }) => {
       {showComments && (
         <PostComments comments={post.comments} postId={post._id} />
       )}
-      {editModal && <CreatePostModal editDetails={post} />}
+      {editModal && (
+        <CreatePostModal
+          editDetails={post}
+          closeModal={() => setEditModal(false)}
+        />
+      )}
     </main>
   );
 };

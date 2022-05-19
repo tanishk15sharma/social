@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { createNewPost, editPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
-import { addPosts } from "../features/postSlice";
+import { addPosts, editPosts } from "../features/postSlice";
 
-const CreatePost = ({ editDetails }) => {
+const CreatePost = ({ editDetails, closeModal }) => {
   const dispatch = useDispatch();
-  const [desc, setDesc] = useState("");
-  const [imageFile, setImageFile] = useState(null);
+  const [desc, setDesc] = useState(editDetails ? editDetails.desc : "");
+  const [imageFile, setImageFile] = useState(
+    editDetails ? editDetails.image : null
+  );
   const { user } = useSelector((state) => state.auth);
 
   const submitHandler = async (e) => {
@@ -15,7 +17,15 @@ const CreatePost = ({ editDetails }) => {
       return alert("please write something");
     }
     if (editDetails) {
-      return editPost(editDetails._id, desc);
+      editPost(editDetails._id, desc);
+      dispatch(
+        editPosts({
+          ...editDetails,
+          desc,
+          image: imageFile,
+        })
+      );
+      return closeModal();
     }
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
@@ -35,8 +45,9 @@ const CreatePost = ({ editDetails }) => {
           <input
             placeholder={`hey ${user.name} share your... !`}
             className="w-full focus:outline-none"
-            value={editDetails ? editDetails.desc : desc}
+            value={desc}
             onChange={(e) => setDesc(e.target.value)}
+            style={{ wordWrap: "break-word" }}
           />
         </div>
       </div>
