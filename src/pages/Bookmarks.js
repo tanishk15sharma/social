@@ -1,20 +1,20 @@
 import React from "react";
-import { Header } from "../components/Header";
 import { Feed } from "../components/Feed";
+import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { Suggestions } from "../components/Suggestions";
 
-const Home = () => {
+const Bookmarks = () => {
   return (
     <div>
       <Header />
       <div className="flex gap-3">
         <SideNav />
-        <Feed />
+        <h1>bookmarks</h1>
         <Suggestions />
       </div>
     </div>
   );
 };
 
-export { Home };
+export { Bookmarks };

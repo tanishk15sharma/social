@@ -1,5 +1,5 @@
 import "./index.css";
-import { Home, Login, Signup, Notification, Profile } from "./pages";
+import { Home, Login, Signup, Notification, Profile, Bookmarks } from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { SideNav } from "./components/SideNav";
@@ -28,6 +28,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/notifications" element={<Notification />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/bookmarks" element={<Bookmarks />} />
       </Routes>
     </>
   );
