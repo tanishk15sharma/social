@@ -15,19 +15,20 @@ import {
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { bookmarks, loading } = useSelector((state) => state.bookmarks);
   const [like, setLike] = useState(post.likes.length);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(post.likes.includes(user._id));
   const [showComments, setShowComments] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [postOptions, setPostOptions] = useState(false);
-  const { bookmarks, loading } = useSelector((state) => state.bookmarks);
-
+  console.log(user);
   const likeHandler = async () => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
-    await likeDislikePost(post._id);
     setIsLiked(!isLiked);
+    await likeDislikePost(post._id);
   };
-
+  console.log(post);
   return (
     <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
       <div className="mb-1 flex justify-between items-center relative">
@@ -79,7 +80,11 @@ const PostCard = ({ post }) => {
       <section className="flex justify-between mt-2 text-grayLight font-thin">
         <div className="flex">
           <button onClick={likeHandler}>
-            <span className="material-icons mr-1">favorite_border</span>
+            {isLiked ? (
+              <span class="material-icons-outlined text-red">favorite</span>
+            ) : (
+              <span className="material-icons mr-1">favorite_border</span>
+            )}
           </button>
           {like}
         </div>
