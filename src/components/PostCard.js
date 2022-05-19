@@ -17,7 +17,7 @@ const PostCard = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [postOptions, setPostOptions] = useState(false);
-  const bookmarks = useSelector((state) => state.bookmarks);
+  const { bookmarks, loading } = useSelector((state) => state.bookmarks);
 
   const likeHandler = async () => {
     setLike((likeValue) => (isLiked ? likeValue - 1 : likeValue + 1));
@@ -90,13 +90,21 @@ const PostCard = ({ post }) => {
         </div>
         <div className="flex">
           <button onClick={() => dispatch(addRemoveBookmark(post._id))}>
-            <span
-              className={`material-icons mr-1  ${
-                bookmarks.loading && "text-primary-700"
-              }`}
-            >
-              bookmark_border
-            </span>
+            {bookmarks.some(
+              (bookmarkedPost) => bookmarkedPost._id === post._id
+            ) ? (
+              <span className="material-icons-outlined text-primary-700">
+                bookmark
+              </span>
+            ) : (
+              <span
+                className={`material-icons mr-1  ${
+                  loading && "text-primary-700"
+                }`}
+              >
+                bookmark_border
+              </span>
+            )}
           </button>
         </div>
         <div className="flex">

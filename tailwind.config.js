@@ -20,6 +20,7 @@ module.exports = {
       grayDark: "#273444",
       gray: "#6b7280",
       grayLight: "#9ca3af",
+      zinc: "#f4f4f5",
     },
 
     screens: {
