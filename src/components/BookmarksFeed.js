@@ -5,7 +5,7 @@ import { PostCard } from "./PostCard";
 const BookmarksFeed = () => {
   const dispatch = useDispatch();
   const { bookmarks, loading } = useSelector((state) => state.bookmarks);
-  console.log(bookmarks);
+
   useEffect(() => {
     dispatch(getAllBookmarks());
   }, []);

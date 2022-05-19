@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+
 import { uploadImage } from "../utils/posts";
 import { deleteUser, getUpdateUser } from "../utils/user";
 
@@ -13,7 +14,7 @@ const EditModal = ({ setToggleEditModal }) => {
     website: "",
     profileImage: "",
   });
-
+  console.log(user);
   const inputHandler = (e) => {
     setUserDetails((previousVal) => ({
       ...previousVal,

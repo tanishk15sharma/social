@@ -45,17 +45,34 @@ const postSignupDetails = createAsyncThunk(
   }
 );
 
+const verifyUser = createAsyncThunk("verify/user", async () => {
+  const token = getUserTokenFromLocalStorage();
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/auth/verify`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+
+    if (status === 200) {
+      return data;
+    }
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(err);
+  }
+});
+
 const authSlice = createSlice({
   name: "authentication",
   initialState: {
     status: "",
     user: {},
   },
-  reducers: {
-    verifyUser: (state) => {
-      state.user = JSON.parse(localStorage.getItem("user"));
-    },
-  },
+  reducers: {},
   extraReducers: {
     [postLoginDetails.pending]: (state, action) => {
       state.status = "loading";
@@ -86,10 +103,18 @@ const authSlice = createSlice({
       state.status = "Login failed , try again";
       console.log(error.message);
     },
+    [verifyUser.fulfilled]: (state, { payload }) => {
+      console.log("verify successfull");
+      state.user = payload.user;
+    },
   },
 });
 
-export { getUserTokenFromLocalStorage, postLoginDetails, postSignupDetails };
-export const { verifyUser } = authSlice.actions;
+export {
+  getUserTokenFromLocalStorage,
+  postLoginDetails,
+  postSignupDetails,
+  verifyUser,
+};
 
 export default authSlice.reducer;
