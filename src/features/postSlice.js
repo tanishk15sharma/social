@@ -41,7 +41,7 @@ const postsSlice = createSlice({
     },
   },
 });
-console.log(postsSlice.actions);
+
 export const { addPosts, removePostFromAllPost } = postsSlice.actions;
 export default postsSlice.reducer;
 export { allPosts, userAllPosts };
