@@ -1,5 +1,5 @@
 import React from "react";
-import { Feed } from "../components/Feed";
+import { BookmarksFeed } from "../components/BookmarksFeed";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { Suggestions } from "../components/Suggestions";
@@ -10,7 +10,7 @@ const Bookmarks = () => {
       <Header />
       <div className="flex gap-3">
         <SideNav />
-        <h1>bookmarks</h1>
+        <BookmarksFeed />
         <Suggestions />
       </div>
     </div>
