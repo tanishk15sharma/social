@@ -118,6 +118,42 @@ const addComment = async (data, postId) => {
   }
 };
 
+const editPost = async (postId, desc) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+    const res = await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/${postId}`,
+      { desc },
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deletePost = async (postId) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/posts/${postId}`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export {
   getAllPosts,
   getUserAllPosts,
@@ -125,4 +161,6 @@ export {
   uploadImage,
   createNewPost,
   addComment,
+  editPost,
+  deletePost,
 };

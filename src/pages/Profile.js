@@ -21,7 +21,7 @@ const Profile = () => {
       const newUser = await getUser(paramsUserId);
       setUser(newUser);
     })();
-  }, [paramsUserId]);
+  }, [paramsUserId, toggleEditModal]);
 
   const handleClick = () => followUnfollowUser(user._id, followed);
 
@@ -71,7 +71,7 @@ const Profile = () => {
               </div>
               <p className="w-10/12 mt-2">{user.bio}</p>
               <a href="google.com" className="text-blue font-normal">
-                Tanishksharma.com
+                {user.website ? user.website : "tanishkSharma.com"}
               </a>
             </div>
             <Feed userId={paramsUserId} />

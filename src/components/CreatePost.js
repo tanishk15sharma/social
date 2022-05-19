@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { createNewPost, uploadImage } from "../utils/posts";
+import { createNewPost, editPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts } from "../features/postSlice";
 
-const CreatePost = () => {
+const CreatePost = ({ editDetails }) => {
   const dispatch = useDispatch();
   const [desc, setDesc] = useState("");
   const [imageFile, setImageFile] = useState(null);
@@ -14,14 +14,18 @@ const CreatePost = () => {
     if (!desc.length) {
       return alert("please write something");
     }
+    if (editDetails) {
+      return editPost(editDetails._id, desc);
+    }
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
     newPost.userId = user;
+    console.log(newPost);
     dispatch(addPosts(newPost));
     setDesc("");
   };
   return (
-    <div className="p-4 px-9 shadow-xl rounded-xl mb-5 mt-3">
+    <div className="p-4 px-9 shadow-xl rounded-xl  mt-3">
       <div className="mb-1 flex  items-center ">
         <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
           {user.name && user.name[0].toUpperCase()}
@@ -31,12 +35,11 @@ const CreatePost = () => {
           <input
             placeholder={`hey ${user.name} share your... !`}
             className="w-full focus:outline-none"
-            value={desc}
+            value={editDetails ? editDetails.desc : desc}
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
       </div>
-
       <form
         className="text-grayLight flex justify-between mt-2 p-4 items-center"
         onSubmit={submitHandler}
@@ -60,7 +63,7 @@ const CreatePost = () => {
           type="submit"
           className="text-white text-center w-100 bg-gradient-to-br from-primary-500 to-primary-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-primary-200 hover:shadow-md  dark:focus:ring-primary-800 font-medium rounded opacity-70  text-sm  px-5 py-2.5 text-center mr-2 mb-2 hover:opacity-90"
         >
-          Post
+          {editDetails ? "Edit" : "Post"}
         </button>
       </form>
     </div>

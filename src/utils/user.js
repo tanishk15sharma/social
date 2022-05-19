@@ -4,7 +4,7 @@ import { getUserTokenFromLocalStorage } from "../features/authSlice";
 const getUser = async (id) => {
   try {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${id}`
+      `${process.env.REACT_APP_BACKEND_URL}/users/profile/${id}`
     );
     return data;
   } catch (err) {
@@ -79,9 +79,7 @@ const getUpdateUser = async (data) => {
   try {
     const res = await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/users/edit`,
-      {
-        data,
-      },
+      data,
       {
         headers: {
           token,
