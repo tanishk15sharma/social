@@ -9,9 +9,9 @@ const Suggestions = () => {
     dispatch(getAllUsers());
   }, []);
   const { allUsers, loading } = useSelector((state) => state.users);
-  console.log(allUsers);
+
   return (
-    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-7/12 max-h-96 overflow-y-scroll rounded">
+    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-7/12 max-h-96 overflow-y-scroll rounded hover:shadow-lg	">
       <h2 className="font-bold text-primary-600 ml-3 mb-2 uppercase">
         <span className="border-b-4 rounded border-primary-800">
           Suggestions

@@ -12,37 +12,37 @@ const getUser = async (id) => {
   }
 };
 
-const getUserFollowing = async (userId) => {
-  if (userId) {
-    try {
-      const { data, status } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/users/myFollowing/${userId}`
-      );
-      console.log(data);
-      if (status === 200) {
-        return data.followingList;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-};
+// const getUserFollowing = async (userId) => {
+//   if (userId) {
+//     try {
+//       const { data, status } = await axios.get(
+//         `${process.env.REACT_APP_BACKEND_URL}/users/myFollowing/${userId}`
+//       );
 
-const getUserFollowers = async (userId) => {
-  if (userId) {
-    try {
-      const { data, status } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/users/myFollowers/${userId}`
-      );
+//       if (status === 200) {
+//         return data.followingList;
+//       }
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// };
 
-      if (status === 200) {
-        return data.followersList;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-};
+// const getUserFollowers = async (userId) => {
+//   if (userId) {
+//     try {
+//       const { data, status } = await axios.get(
+//         `${process.env.REACT_APP_BACKEND_URL}/users/myFollowers/${userId}`
+//       );
+
+//       if (status === 200) {
+//         return data.followersList;
+//       }
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// };
 
 const followUnfollowUser = async (id, followed) => {
   const token = getUserTokenFromLocalStorage();
@@ -110,11 +110,4 @@ const deleteUser = async () => {
   }
 };
 
-export {
-  getUser,
-  getUserFollowing,
-  getUserFollowers,
-  followUnfollowUser,
-  getUpdateUser,
-  deleteUser,
-};
+export { getUser, followUnfollowUser, getUpdateUser, deleteUser };

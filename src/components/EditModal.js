@@ -11,10 +11,10 @@ const EditModal = ({ setToggleEditModal }) => {
   const [userDetails, setUserDetails] = useState({
     name: user.name,
     bio: user.bio,
-    website: "",
+    website: user.website,
     profileImage: "",
   });
-  console.log(user);
+
   const inputHandler = (e) => {
     setUserDetails((previousVal) => ({
       ...previousVal,

@@ -14,7 +14,7 @@ const Profile = () => {
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
 
-  const [followed, setFollowed] = useState(false);
+  const [followed, setFollowed] = useState(true);
 
   useEffect(() => {
     (async () => {
