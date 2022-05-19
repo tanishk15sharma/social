@@ -96,7 +96,7 @@ const usersSlice = createSlice({
       state.getFriendsLoading = false;
       state.userFollowing = payload;
     },
-    [getUserFollwgetUserFollowings.rejected]: (state, { error }) => {
+    [getUserFollowing.rejected]: (state, { error }) => {
       state.getFriendsLoading = true;
     },
   },
