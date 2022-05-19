@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { PostComments } from "./PostComments";
 import { CreatePostModal } from "./CreatePostModal";
 import { removePostFromAllPost } from "../features/postSlice";
-import { addRemoveBookmark } from "../features/bookmarkSlice";
+import {
+  addRemoveBookmark,
+  removePostFromBookmark,
+} from "../features/bookmarkSlice";
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
@@ -89,14 +92,21 @@ const PostCard = ({ post }) => {
           {post.comments.length}
         </div>
         <div className="flex">
-          <button onClick={() => dispatch(addRemoveBookmark(post._id))}>
-            {bookmarks.some(
-              (bookmarkedPost) => bookmarkedPost._id === post._id
-            ) ? (
+          {bookmarks.some(
+            (bookmarkedPost) => bookmarkedPost._id === post._id
+          ) ? (
+            <button
+              onClick={() => {
+                dispatch(addRemoveBookmark(post._id));
+                dispatch(removePostFromBookmark(post._id));
+              }}
+            >
               <span className="material-icons-outlined text-primary-700">
                 bookmark
               </span>
-            ) : (
+            </button>
+          ) : (
+            <button onClick={() => dispatch(addRemoveBookmark(post._id))}>
               <span
                 className={`material-icons mr-1  ${
                   loading && "text-primary-700"
@@ -104,8 +114,8 @@ const PostCard = ({ post }) => {
               >
                 bookmark_border
               </span>
-            )}
-          </button>
+            </button>
+          )}
         </div>
         <div className="flex">
           <span className="material-icons mr-1">share</span>

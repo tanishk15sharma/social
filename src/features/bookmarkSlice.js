@@ -52,7 +52,14 @@ const bookmarksSlice = createSlice({
     loading: false,
     bookmarks: [],
   },
-  reducers: {},
+  reducers: {
+    removePostFromBookmark: (state, { payload }) => {
+      console.log(payload);
+      state.bookmarks = state.bookmarks.filter(
+        (bookmarkedPost) => bookmarkedPost._id !== payload
+      );
+    },
+  },
   extraReducers: {
     [addRemoveBookmark.pending]: (state, action) => {
       state.loading = true;
@@ -78,3 +85,4 @@ const bookmarksSlice = createSlice({
 
 export default bookmarksSlice.reducer;
 export { getAllBookmarks, addRemoveBookmark };
+export const { removePostFromBookmark } = bookmarksSlice.actions;
