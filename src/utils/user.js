@@ -1,5 +1,8 @@
 import axios from "axios";
-import { getUserTokenFromLocalStorage } from "../features/authSlice";
+import {
+  addFollower,
+  getUserTokenFromLocalStorage,
+} from "../features/authSlice";
 
 const getUser = async (id) => {
   try {
@@ -12,62 +15,37 @@ const getUser = async (id) => {
   }
 };
 
-// const getUserFollowing = async (userId) => {
-//   if (userId) {
-//     try {
-//       const { data, status } = await axios.get(
-//         `${process.env.REACT_APP_BACKEND_URL}/users/myFollowing/${userId}`
-//       );
-
-//       if (status === 200) {
-//         return data.followingList;
-//       }
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// };
-
-// const getUserFollowers = async (userId) => {
-//   if (userId) {
-//     try {
-//       const { data, status } = await axios.get(
-//         `${process.env.REACT_APP_BACKEND_URL}/users/myFollowers/${userId}`
-//       );
-
-//       if (status === 200) {
-//         return data.followersList;
-//       }
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// };
-
-const followUnfollowUser = async (id, followed) => {
-  const token = getUserTokenFromLocalStorage();
+const followUser = async (id, dispatch) => {
   try {
-    if (followed) {
-      await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,
-        {},
-        {
-          headers: {
-            token,
-          },
-        }
-      );
-    } else {
-      await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/users/unfollow/${id}`,
-        {},
-        {
-          headers: {
-            token,
-          },
-        }
-      );
-    }
+    const token = getUserTokenFromLocalStorage();
+    await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,
+      {},
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+    dispatch(addFollower(id));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const unFollowUser = async (id, dispatch) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+
+    await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/users/unfollow/${id}`,
+      {},
+      {
+        headers: {
+          token,
+        },
+      }
+    );
   } catch (err) {
     console.log(err);
   }
@@ -110,4 +88,4 @@ const deleteUser = async () => {
   }
 };
 
-export { getUser, followUnfollowUser, getUpdateUser, deleteUser };
+export { getUser, followUser, unFollowUser, getUpdateUser, deleteUser };

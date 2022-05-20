@@ -3,18 +3,17 @@ import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
-import { followUnfollowUser, getUser } from "../utils/user";
+import { followUser, getUser, unFollowUser } from "../utils/user";
 import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.auth);
   const [toggleEditModal, setToggleEditModal] = useState(false);
   const [user, setUser] = useState({});
   const paramsUserId = useParams().id;
-
-  const [followed, setFollowed] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -23,7 +22,7 @@ const Profile = () => {
     })();
   }, [paramsUserId, toggleEditModal]);
 
-  const handleClick = () => followUnfollowUser(user._id, followed);
+  console.log(loggedUser.user.following);
 
   return (
     <div>
@@ -50,12 +49,19 @@ const Profile = () => {
                       drive_file_rename_outline
                     </span>
                   </button>
+                ) : loggedUser.user.following?.includes(user._id) ? (
+                  <button
+                    className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
+                    onClick={() => unFollowUser(user._id, dispatch)}
+                  >
+                    Unfollow
+                  </button>
                 ) : (
                   <button
-                    onClick={handleClick}
                     className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
+                    onClick={() => followUser(user._id, dispatch)}
                   >
-                    {followed ? "Unfollow" : "Follow"}
+                    follow
                   </button>
                 )}
               </span>

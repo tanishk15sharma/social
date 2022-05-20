@@ -42,7 +42,7 @@ const Suggestions = () => {
                   </div>
                 </div>
                 <button
-                  class="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  className="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
                 >
                   Follow

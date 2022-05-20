@@ -1,27 +1,31 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { addComment } from "../utils/posts";
 
-const PostComments = ({ comments, postId }) => {
+const PostComments = ({ comments, postId, commentLength }) => {
+  const { user } = useSelector((state) => state.auth);
+
   const [allComments, setAllComments] = useState(comments);
   const [commentData, setCommentData] = useState({
     comment: "",
-    userName: "NAME",
-    userImage: "image",
+    name: user.name,
+    profileImage: user.profileImage,
   });
-  console.log(postId);
+  console.log(allComments);
   const addBtnHandler = () => {
     if (commentData.comment === "") {
       return alert("please write a comment");
     }
     addComment(commentData, postId);
     setAllComments((previousComments) => [...previousComments, commentData]);
+    commentLength = commentLength + 1;
     setCommentData({ ...commentData, comment: "" });
   };
   return (
     <div>
       <div className="flex  ml-4 ">
         <div className="w-7 h-7 bg-primary-200 rounded-full flex justify-center mr-4 items-center font-bold text-primary-900">
-          T
+          {user.name && user.name[0].toUpperCase()}
         </div>
         <input
           placeholder="write a comment"
@@ -39,12 +43,15 @@ const PostComments = ({ comments, postId }) => {
           Add
         </button>
       </div>
-      {allComments.map(({ comment }) => (
-        <div className="flex items-end ml-4 mb-2 mt-2">
+      {allComments.map(({ comment, name }) => (
+        <div className="flex items-center ml-4 mb-2 mt-2">
           <div className="w-7 h-7 bg-primary-200 rounded-full flex justify-center mr-4 items-center font-bold text-primary-900">
-            T
+            {name[0].toUpperCase()}
           </div>
-          <p className="text-sm">{comment}</p>
+          <div className="flex flex-col ">
+            <span className="text-sm">{name}</span>
+            <p className="text-sm">{comment}</p>
+          </div>
         </div>
       ))}
     </div>

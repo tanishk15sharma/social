@@ -72,7 +72,13 @@ const authSlice = createSlice({
     status: "",
     user: {},
   },
-  reducers: {},
+  reducers: {
+    addFollower: (state, { payload }) => {
+      console.log(payload);
+      state.user.followers = [...state.user.followers, payload];
+      console.log(state.user.followers);
+    },
+  },
   extraReducers: {
     [postLoginDetails.pending]: (state, action) => {
       state.status = "loading";
@@ -118,3 +124,4 @@ export {
 };
 
 export default authSlice.reducer;
+export const { addFollower } = authSlice.actions;
