@@ -16,6 +16,7 @@ const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { bookmarks, loading } = useSelector((state) => state.bookmarks);
+
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(post.likes.includes(user._id));
   const [showComments, setShowComments] = useState(false);
@@ -59,13 +60,21 @@ const PostCard = ({ post }) => {
               postOptions ? "block" : "hidden"
             }`}
           >
-            <button onClick={() => setEditModal(true)}>EDIT</button>
+            <button
+              onClick={() => setEditModal(true)}
+              disabled={post.userId._id !== user._id}
+              className={post.userId._id !== user._id && "opacity-20"}
+            >
+              EDIT
+            </button>
 
             <button
               onClick={async () => {
                 await deletePost(post._id);
                 dispatch(removePostFromAllPost(post._id));
               }}
+              disabled={post.userId._id !== user._id}
+              className={post.userId._id !== user._id && "opacity-20"}
             >
               DELETE
             </button>
