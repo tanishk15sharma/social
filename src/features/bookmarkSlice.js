@@ -54,10 +54,12 @@ const bookmarksSlice = createSlice({
   },
   reducers: {
     removePostFromBookmark: (state, { payload }) => {
-      console.log(payload);
       state.bookmarks = state.bookmarks.filter(
         (bookmarkedPost) => bookmarkedPost._id !== payload
       );
+    },
+    addPostToBookmark: (state, { payload }) => {
+      state.bookmarks.push(payload);
     },
   },
   extraReducers: {
@@ -85,4 +87,5 @@ const bookmarksSlice = createSlice({
 
 export default bookmarksSlice.reducer;
 export { getAllBookmarks, addRemoveBookmark };
-export const { removePostFromBookmark } = bookmarksSlice.actions;
+export const { removePostFromBookmark, addPostToBookmark } =
+  bookmarksSlice.actions;

@@ -118,7 +118,6 @@ const authSlice = createSlice({
   extraReducers: {
     [postLoginDetails.pending]: (state, action) => {
       state.status = "loading";
-      console.log("login pending");
     },
     [postLoginDetails.fulfilled]: (state, { payload }) => {
       state.status = "login successful";

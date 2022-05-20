@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { deletePost, likeDislikePost } from "../utils/posts";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { PostComments } from "./PostComments";
 import { CreatePostModal } from "./CreatePostModal";
 import { removePostFromAllPost } from "../features/postSlice";
 import {
+  addPostToBookmark,
   addRemoveBookmark,
   removePostFromBookmark,
 } from "../features/bookmarkSlice";
@@ -111,7 +110,12 @@ const PostCard = ({ post }) => {
               </span>
             </button>
           ) : (
-            <button onClick={() => dispatch(addRemoveBookmark(post._id))}>
+            <button
+              onClick={() => {
+                dispatch(addRemoveBookmark(post._id));
+                dispatch(addPostToBookmark(post));
+              }}
+            >
               <span
                 className={`material-icons mr-1  ${
                   loading && "text-primary-700"
@@ -127,11 +131,7 @@ const PostCard = ({ post }) => {
         </div>
       </section>
       {showComments && (
-        <PostComments
-          comments={post.comments}
-          postId={post._id}
-          commentLength={post.comments.length}
-        />
+        <PostComments comments={post.comments} postId={post._id} />
       )}
       {editModal && (
         <CreatePostModal

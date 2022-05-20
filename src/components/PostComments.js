@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { addComment } from "../utils/posts";
 
-const PostComments = ({ comments, postId, commentLength }) => {
+const PostComments = ({ comments, postId }) => {
   const { user } = useSelector((state) => state.auth);
 
   const [allComments, setAllComments] = useState(comments);
@@ -18,7 +18,6 @@ const PostComments = ({ comments, postId, commentLength }) => {
     }
     addComment(commentData, postId);
     setAllComments((previousComments) => [...previousComments, commentData]);
-    commentLength = commentLength + 1;
     setCommentData({ ...commentData, comment: "" });
   };
   return (
@@ -44,7 +43,7 @@ const PostComments = ({ comments, postId, commentLength }) => {
         </button>
       </div>
       {allComments.map(({ comment, name }) => (
-        <div className="flex items-center ml-4 mb-2 mt-2">
+        <div className="flex items-center ml-4 mb-2 mt-2" key={name}>
           <div className="w-7 h-7 bg-primary-200 rounded-full flex justify-center mr-4 items-center font-bold text-primary-900">
             {name[0].toUpperCase()}
           </div>
