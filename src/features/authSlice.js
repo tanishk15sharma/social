@@ -68,6 +68,7 @@ const verifyUser = createAsyncThunk("verify/user", async () => {
 
 const addFollower = createAsyncThunk("user/addFollowers", async (id) => {
   try {
+    console.log(id, "aaa");
     const token = getUserTokenFromLocalStorage();
     await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,
@@ -147,6 +148,7 @@ const authSlice = createSlice({
       state.user = payload.user;
     },
     [addFollower.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.user.following.push(payload);
     },
     [removeFollower.fulfilled]: (state, { payload }) => {

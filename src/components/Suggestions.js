@@ -1,14 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addFollower } from "../features/authSlice";
 import { getAllUsers } from "../features/usersSlice";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { allUsers, loading } = useSelector((state) => state.users);
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
-  const { allUsers, loading } = useSelector((state) => state.users);
+
+  const otherUsers = allUsers.filter(({ _id }) => user._id !== _id);
+
+  const suggestedUsers = otherUsers.filter(({ followers }) =>
+    followers.every((id) => user._id !== id)
+  );
 
   return (
     <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-7/12 max-h-96 overflow-y-scroll rounded hover:shadow-lg	">
@@ -22,7 +30,7 @@ const Suggestions = () => {
         {loading ? (
           <h1>loading</h1>
         ) : (
-          allUsers.map((user) => {
+          suggestedUsers.map((user) => {
             return (
               <div
                 className="mb-1 flex justify-between items-center mb-3"
@@ -44,6 +52,7 @@ const Suggestions = () => {
                 <button
                   className="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
+                  onClick={() => dispatch(addFollower(user._id))}
                 >
                   Follow
                 </button>
