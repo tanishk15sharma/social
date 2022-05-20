@@ -1,8 +1,5 @@
 import axios from "axios";
-import {
-  addFollower,
-  getUserTokenFromLocalStorage,
-} from "../features/authSlice";
+import { getUserTokenFromLocalStorage } from "../features/authSlice";
 
 const getUser = async (id) => {
   try {
@@ -10,42 +7,6 @@ const getUser = async (id) => {
       `${process.env.REACT_APP_BACKEND_URL}/users/profile/${id}`
     );
     return data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const followUser = async (id, dispatch) => {
-  try {
-    const token = getUserTokenFromLocalStorage();
-    await axios.put(
-      `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,
-      {},
-      {
-        headers: {
-          token,
-        },
-      }
-    );
-    dispatch(addFollower(id));
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const unFollowUser = async (id, dispatch) => {
-  try {
-    const token = getUserTokenFromLocalStorage();
-
-    await axios.put(
-      `${process.env.REACT_APP_BACKEND_URL}/users/unfollow/${id}`,
-      {},
-      {
-        headers: {
-          token,
-        },
-      }
-    );
   } catch (err) {
     console.log(err);
   }
@@ -88,4 +49,4 @@ const deleteUser = async () => {
   }
 };
 
-export { getUser, followUser, unFollowUser, getUpdateUser, deleteUser };
+export { getUser, getUpdateUser, deleteUser };

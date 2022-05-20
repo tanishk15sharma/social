@@ -3,10 +3,11 @@ import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { EditModal } from "../components/EditModal";
 import { useParams } from "react-router";
-import { followUser, getUser, unFollowUser } from "../utils/user";
+import { getUser } from "../utils/user";
 import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
 import { useDispatch, useSelector } from "react-redux";
+import { addFollower, removeFollower } from "../features/authSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,6 @@ const Profile = () => {
       setUser(newUser);
     })();
   }, [paramsUserId, toggleEditModal]);
-
-  console.log(loggedUser.user.following);
 
   return (
     <div>
@@ -52,14 +51,14 @@ const Profile = () => {
                 ) : loggedUser.user.following?.includes(user._id) ? (
                   <button
                     className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
-                    onClick={() => unFollowUser(user._id, dispatch)}
+                    onClick={() => dispatch(removeFollower(user._id))}
                   >
                     Unfollow
                   </button>
                 ) : (
                   <button
                     className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
-                    onClick={() => followUser(user._id, dispatch)}
+                    onClick={() => dispatch(addFollower(user._id))}
                   >
                     follow
                   </button>

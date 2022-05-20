@@ -66,19 +66,55 @@ const verifyUser = createAsyncThunk("verify/user", async () => {
   }
 });
 
+const addFollower = createAsyncThunk("user/addFollowers", async (id) => {
+  try {
+    const token = getUserTokenFromLocalStorage();
+    await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,
+      {},
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+
+    return id;
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(err);
+  }
+});
+
+const removeFollower = createAsyncThunk(
+  "user/removeFollowers",
+  async (userId) => {
+    try {
+      const token = getUserTokenFromLocalStorage();
+
+      await axios.put(
+        `${process.env.REACT_APP_BACKEND_URL}/users/unfollow/${userId}`,
+        {},
+        {
+          headers: {
+            token,
+          },
+        }
+      );
+      return userId;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "authentication",
   initialState: {
     status: "",
     user: {},
   },
-  reducers: {
-    addFollower: (state, { payload }) => {
-      console.log(payload);
-      state.user.followers = [...state.user.followers, payload];
-      console.log(state.user.followers);
-    },
-  },
+  reducers: {},
   extraReducers: {
     [postLoginDetails.pending]: (state, action) => {
       state.status = "loading";
@@ -96,10 +132,8 @@ const authSlice = createSlice({
     },
     [postSignupDetails.pending]: (state, action) => {
       state.status = "loading";
-      // console.log("signup pending");
     },
     [postSignupDetails.fulfilled]: (state, { payload }) => {
-      // console.log(payload);
       state.status = "login successful";
       state.user = payload.user;
       localStorage.setItem("userToken", payload.token);
@@ -113,6 +147,14 @@ const authSlice = createSlice({
       console.log("verify successfull");
       state.user = payload.user;
     },
+    [addFollower.fulfilled]: (state, { payload }) => {
+      state.user.following.push(payload);
+    },
+    [removeFollower.fulfilled]: (state, { payload }) => {
+      state.user.following = state.user.following.filter(
+        (id) => id !== payload
+      );
+    },
   },
 });
 
@@ -121,7 +163,8 @@ export {
   postLoginDetails,
   postSignupDetails,
   verifyUser,
+  addFollower,
+  removeFollower,
 };
 
 export default authSlice.reducer;
-export const { addFollower } = authSlice.actions;
