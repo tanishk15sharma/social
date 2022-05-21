@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 const getUserTokenFromLocalStorage = () => {
-  const userDetails = localStorage.getItem("userToken") || {
-    token: null,
-  };
+  const userDetails = localStorage.getItem("userToken") || null;
   return userDetails;
 };
 

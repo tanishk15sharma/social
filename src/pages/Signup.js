@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import { postSignupDetails } from "../features/authSlice";
 import { validSignUp } from "../utils/auth";
 const Signup = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const loggedUser = useSelector((state) => state.auth);
   // console.log(userDetails.auth);
 
@@ -49,6 +50,7 @@ const Signup = () => {
     }
     console.log("sign clicked");
     dispatch(postSignupDetails(signUpData));
+    navigate("/");
   };
 
   return (

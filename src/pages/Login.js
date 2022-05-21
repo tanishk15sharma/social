@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postLoginDetails } from "../features/authSlice";
 import { validLogin } from "../utils/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.auth);
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -17,14 +18,19 @@ const Login = () => {
     setLoginErrors((loginErr) => ({ ...loginErr, [e.target.name]: "" }));
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const { isValid, errors } = validLogin(loginData, loginErrors);
     if (!isValid) {
       setLoginErrors(errors);
       return;
     }
-    dispatch(postLoginDetails(loginData));
+    try {
+      await dispatch(postLoginDetails(loginData)).unwrap();
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
   const testLoginHandler = () => {
     setLoginData({ username: "adarshbalika", password: "adarshBalika123" });

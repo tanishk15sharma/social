@@ -6,6 +6,7 @@ import { SideNav } from "./components/SideNav";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserTokenFromLocalStorage, verifyUser } from "./features/authSlice";
 import { useEffect } from "react";
+import { PrivateRoutes } from "./components/PrivateRoutes";
 
 function App() {
   const token = getUserTokenFromLocalStorage();
@@ -23,12 +24,14 @@ function App() {
       {/* <Header />
       <SideNav /> */}
       <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/notifications" element={<Notification />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/notifications" element={<Notification />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/bookmarks" element={<Bookmarks />} />
       </Routes>
     </>
   );
