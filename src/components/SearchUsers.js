@@ -13,7 +13,7 @@ const SearchUsers = () => {
   );
   console.log(searchOutput);
   return (
-    <div className="ml-3 relative">
+    <div className="ml-3 relative" onClick={() => setSearchUser("")}>
       <input
         type="text"
         placeholder="search"
