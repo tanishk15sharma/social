@@ -43,27 +43,6 @@ const postSignupDetails = createAsyncThunk(
   }
 );
 
-const verifyUser = createAsyncThunk("verify/user", async () => {
-  const token = getUserTokenFromLocalStorage();
-  try {
-    const { data, status } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/auth/verify`,
-      {
-        headers: {
-          token,
-        },
-      }
-    );
-
-    if (status === 200) {
-      return data;
-    }
-  } catch (err) {
-    console.log(err);
-    return Promise.reject(err);
-  }
-});
-
 const addFollower = createAsyncThunk("user/addFollowers", async (id) => {
   try {
     console.log(id, "aaa");
@@ -113,7 +92,11 @@ const authSlice = createSlice({
     status: "",
     user: {},
   },
-  reducers: {},
+  reducers: {
+    verifyUser: (state) => {
+      state.user = JSON.parse(localStorage.getItem("user"));
+    },
+  },
   extraReducers: {
     [postLoginDetails.pending]: (state, action) => {
       state.status = "loading";
@@ -141,10 +124,7 @@ const authSlice = createSlice({
       state.status = "Login failed , try again";
       console.log(error.message);
     },
-    [verifyUser.fulfilled]: (state, { payload }) => {
-      console.log("verify successfull");
-      state.user = payload.user;
-    },
+
     [addFollower.fulfilled]: (state, { payload }) => {
       console.log(payload);
       state.user.following.push(payload);
@@ -161,9 +141,9 @@ export {
   getUserTokenFromLocalStorage,
   postLoginDetails,
   postSignupDetails,
-  verifyUser,
   addFollower,
   removeFollower,
 };
+export const { verifyUser } = authSlice.actions;
 
 export default authSlice.reducer;
