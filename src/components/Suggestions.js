@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { addFollower } from "../features/authSlice";
 import { getAllUsers } from "../features/usersSlice";
+import { UserInfo } from "./UserInfo";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
@@ -36,19 +36,7 @@ const Suggestions = () => {
                 className="mb-1 flex justify-between items-center mb-3"
                 key={user._id}
               >
-                <div className="flex p-2 items-center">
-                  <Link to={`/profile/${user._id}`}>
-                    <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900 mr-1">
-                      {user.name && user.name[0].toUpperCase()}
-                    </div>
-                  </Link>
-                  <div className="leading-4">
-                    <span>
-                      {user.name}
-                      <span className="block text-gray ">@{user.username}</span>
-                    </span>
-                  </div>
-                </div>
+                <UserInfo user={user} />
                 <button
                   className="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
