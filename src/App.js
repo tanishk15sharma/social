@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserTokenFromLocalStorage, verifyUser } from "./features/authSlice";
 import { useEffect } from "react";
 import { PrivateRoutes } from "./components/PrivateRoutes";
+import { PublicRoutes } from "./components/PublicRoutes";
 
 function App() {
   const token = getUserTokenFromLocalStorage();
@@ -30,8 +31,10 @@ function App() {
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route element={<PublicRoutes />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Route>
       </Routes>
     </>
   );
