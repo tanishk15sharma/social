@@ -33,7 +33,7 @@ const Login = () => {
     }
   };
   const testLoginHandler = () => {
-    setLoginData({ username: "adarshbalika", password: "adarshBalika123" });
+    setLoginData({ username: "TanishkSharma", password: "Tanishk" });
   };
   return (
     <div className=" grid grid-cols-2 h-screen gap-4 ">
