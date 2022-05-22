@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CreatePostModal } from "./CreatePostModal";
+import { Logout } from "./Logout";
 
 const SideNav = () => {
   const { user } = useSelector((state) => state.auth);
   const [togglePostModal, setTogglePostModal] = useState(false);
+  const [toggleLogout, setToggleLogout] = useState(false);
   return (
     <div className="ml-12 sticky top-20 z-10 w-1/5">
       <ul className="m-3">
@@ -35,10 +37,14 @@ const SideNav = () => {
             <span>Profile</span>
           </li>
         </Link>
-        <li className="flex my-5 text-xl items-center">
+        <li
+          className="flex mt-5 text-xl items-center cursor-pointer"
+          onClick={() => setToggleLogout((preVal) => !preVal)}
+        >
           <span className="material-icons mr-4">tune</span>
           <span>Settings</span>
         </li>
+        {toggleLogout && <Logout setLogout={setToggleLogout} />}
       </ul>
       <button
         type="button"
