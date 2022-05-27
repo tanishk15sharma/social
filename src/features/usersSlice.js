@@ -67,9 +67,15 @@ const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    addUserFollowers: (state, { payload }) => {
-      console.log(payload);
+    addFollowerInList: (state, { payload }) => {
       state.userFollowers = [...state.userFollowers, payload.user];
+    },
+    removeFollowerFromList: (state, { payload }) => {
+      console.log(payload);
+
+      state.userFollowers = state.userFollowers.filter(
+        ({ _id }) => _id !== payload
+      );
     },
     removeSuggestion: (state, { payload }) => {
       console.log(payload);
@@ -112,5 +118,6 @@ const usersSlice = createSlice({
 });
 
 export default usersSlice.reducer;
-export const { addUserFollowers, removeSuggestion } = usersSlice.actions;
+export const { addFollowerInList, removeSuggestion, removeFollowerFromList } =
+  usersSlice.actions;
 export { getAllUsers, getUserFollowers, getUserFollowing };

@@ -8,7 +8,10 @@ import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
 import { useDispatch, useSelector } from "react-redux";
 import { addFollower, removeFollower } from "../features/authSlice";
-import { addUserFollowers } from "../features/usersSlice";
+import {
+  addFollowerInList,
+  removeFollowerFromList,
+} from "../features/usersSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -52,7 +55,10 @@ const Profile = () => {
                 ) : loggedUser.user.following?.includes(user._id) ? (
                   <button
                     className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
-                    onClick={() => dispatch(removeFollower(user._id))}
+                    onClick={() => {
+                      dispatch(removeFollower(user._id));
+                      dispatch(removeFollowerFromList(loggedUser.user._id));
+                    }}
                   >
                     Unfollow
                   </button>
@@ -61,7 +67,7 @@ const Profile = () => {
                     className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
                     onClick={() => {
                       dispatch(addFollower(user._id));
-                      dispatch(addUserFollowers(loggedUser));
+                      dispatch(addFollowerInList(loggedUser));
                     }}
                   >
                     follow
