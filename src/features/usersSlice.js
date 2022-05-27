@@ -68,7 +68,8 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     addUserFollowers: (state, { payload }) => {
-      state.userFollowers = [...state.userFollowers, payload];
+      console.log(payload);
+      state.userFollowers = [...state.userFollowers, payload.user];
     },
     removeSuggestion: (state, { payload }) => {
       console.log(payload);

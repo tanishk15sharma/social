@@ -11,7 +11,8 @@ const UserFriends = ({ user }) => {
     dispatch(getUserFollowing(user._id));
   }, [user._id]);
   const { userFollowers, userFollowing } = useSelector((state) => state.users);
-
+  console.log(userFollowing);
+  console.log(userFollowers);
   return (
     <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-3/12">
       <button
