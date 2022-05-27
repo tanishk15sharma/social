@@ -45,7 +45,6 @@ const postSignupDetails = createAsyncThunk(
 
 const addFollower = createAsyncThunk("user/addFollowers", async (id) => {
   try {
-    console.log(id, "aaa");
     const token = getUserTokenFromLocalStorage();
     await axios.put(
       `${process.env.REACT_APP_BACKEND_URL}/users/follow/${id}`,

@@ -66,7 +66,15 @@ const initialState = {
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    addUserFollowers: (state, { payload }) => {
+      state.userFollowers = [...state.userFollowers, payload];
+    },
+    removeSuggestion: (state, { payload }) => {
+      console.log(payload);
+      state.allUsers = state.allUsers.filter(({ _id }) => _id !== payload);
+    },
+  },
   extraReducers: {
     [getAllUsers.pending]: (state, action) => {
       state.loading = true;
@@ -103,4 +111,5 @@ const usersSlice = createSlice({
 });
 
 export default usersSlice.reducer;
+export const { addUserFollowers, removeSuggestion } = usersSlice.actions;
 export { getAllUsers, getUserFollowers, getUserFollowing };

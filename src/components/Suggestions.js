@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFollower } from "../features/authSlice";
-import { getAllUsers } from "../features/usersSlice";
+import { getAllUsers, removeSuggestion } from "../features/usersSlice";
 import { UserInfo } from "./UserInfo";
 
 const Suggestions = () => {
   const dispatch = useDispatch();
+
   const { user } = useSelector((state) => state.auth);
   const { allUsers, loading } = useSelector((state) => state.users);
   useEffect(() => {
@@ -40,7 +41,10 @@ const Suggestions = () => {
                 <button
                   className="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
-                  onClick={() => dispatch(addFollower(user._id))}
+                  onClick={() => {
+                    dispatch(addFollower(user._id));
+                    dispatch(removeSuggestion(user._id));
+                  }}
                 >
                   Follow
                 </button>

@@ -8,6 +8,7 @@ import { Feed } from "../components/Feed";
 import { UserFriends } from "../components/UserFriends";
 import { useDispatch, useSelector } from "react-redux";
 import { addFollower, removeFollower } from "../features/authSlice";
+import { addUserFollowers } from "../features/usersSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Profile = () => {
       setUser(newUser);
     })();
   }, [paramsUserId, toggleEditModal]);
-
+  console.log(loggedUser.user.following);
   return (
     <div>
       <Header />
@@ -58,7 +59,10 @@ const Profile = () => {
                 ) : (
                   <button
                     className="border rounded ease-out duration-200 ml-5 border-primary-800 p-0 pr-5 text-sm pl-5 hover:bg-primary-500 hover:text-white hover:border-primary-500 hover:shadow-md"
-                    onClick={() => dispatch(addFollower(user._id))}
+                    onClick={() => {
+                      dispatch(addFollower(user._id));
+                      dispatch(addUserFollowers(loggedUser));
+                    }}
                   >
                     follow
                   </button>
