@@ -34,7 +34,7 @@ const PostCard = ({ post }) => {
       <div className="mb-1 flex justify-between items-center relative">
         <div className="flex items-center">
           <Link to={`/profile/${post.userId._id}`}>
-            <div className="w-9 h-9 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
+            <div className="w-11 h-11 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
               {post.userId.profileImage ? (
                 <img
                   src={post.userId.profileImage}

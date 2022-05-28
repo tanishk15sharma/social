@@ -4,6 +4,7 @@ import { addFollower } from "../features/authSlice";
 import { getAllUsers, removeSuggestion } from "../features/usersSlice";
 import { UserInfo } from "./UserInfo";
 import dataEmpty from "../assets/nodatapresent.svg";
+import { UserSkeleton } from "./UserSkeleton";
 const Suggestions = () => {
   const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ const Suggestions = () => {
       </h2>
       <div>
         {loading ? (
-          <h1>loading</h1>
+          <UserSkeleton />
         ) : suggestedUsers.length === 0 ? (
           <img src={dataEmpty} className="m-auto mt-16 w-44" />
         ) : (

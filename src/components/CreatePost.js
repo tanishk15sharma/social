@@ -37,7 +37,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
   return (
     <div className="p-4 px-9  mt-3">
       <div className="mb-1 flex  items-center ">
-        <div className="w-9 h-9 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
+        <div className="w-11 h-11 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
           {user.profileImage ? (
             <img
               src={user.profileImage}
