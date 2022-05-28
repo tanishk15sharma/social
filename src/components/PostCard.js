@@ -30,7 +30,7 @@ const PostCard = ({ post }) => {
   };
 
   return (
-    <main className=" p-4 px-9 shadow rounded-xl mb-5 mt-3">
+    <main className=" p-4 px-9 border-t border-primary-200 mb-5 mt-3 ">
       <div className="mb-1 flex justify-between items-center relative">
         <div className="flex items-center">
           <Link to={`/profile/${post.userId._id}`}>
@@ -49,9 +49,8 @@ const PostCard = ({ post }) => {
           <div className="leading-5 ">
             <span>
               {post.userId.name}
-              <span className="block text-gray ">
-                @{post.userId.username}{" "}
-                <span className="text-xs">{format(post.createdAt)} </span>
+              <span className="block text-gray text-sm">
+                @{post.userId.username} <span>{format(post.createdAt)} </span>
               </span>
             </span>
           </div>

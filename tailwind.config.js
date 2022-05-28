@@ -19,6 +19,10 @@ module.exports = {
       blue: "#0284c7",
       grayDark: "#273444",
       gray: "#6b7280",
+      slate: {
+        100: "#f1f5f9",
+        50: "#fafafa",
+      },
       grayLight: "#9ca3af",
       zinc: "#f4f4f5",
     },

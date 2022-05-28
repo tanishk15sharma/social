@@ -35,7 +35,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
     setDesc("");
   };
   return (
-    <div className="p-4 px-9 shadow-xl rounded-xl  mt-3">
+    <div className="p-4 px-9  mt-3">
       <div className="mb-1 flex  items-center ">
         <div className="w-9 h-9 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
           {user.profileImage ? (
@@ -52,7 +52,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
         <div className="leading-5 w-full pl-2">
           <input
             placeholder={`hey ${user.name} share your... !`}
-            className="w-full focus:outline-none"
+            className="w-full focus:outline-none bg-primary-50"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
             style={{ wordWrap: "break-word" }}
