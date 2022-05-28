@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFollower } from "../features/authSlice";
 import { getAllUsers, removeSuggestion } from "../features/usersSlice";
 import { UserInfo } from "./UserInfo";
-
+import dataEmpty from "../assets/nodatapresent.svg";
 const Suggestions = () => {
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Suggestions = () => {
   );
 
   return (
-    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-7/12 max-h-96 overflow-y-scroll rounded hover:shadow-lg	">
+    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-7/12 max-h-80 overflow-y-scroll rounded hover:shadow-lg	">
       <h2 className="font-bold text-primary-600 ml-3 mb-2 uppercase">
         <span className="border-b-4 rounded border-primary-800">
           Suggestions
@@ -30,6 +30,8 @@ const Suggestions = () => {
       <div>
         {loading ? (
           <h1>loading</h1>
+        ) : suggestedUsers.length === 0 ? (
+          <img src={dataEmpty} className="m-auto mt-16 w-44" />
         ) : (
           suggestedUsers.map((user) => {
             return (

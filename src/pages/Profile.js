@@ -34,7 +34,16 @@ const Profile = () => {
         <SideNav />
         {user ? (
           <section className="m-3 w-2/5 mr-8 mt-6  border-solid border ">
-            <div className="h-40 border border-solid bg-gradient-to-r from-black to-black relative">
+            <div className="h-40 border border-solid relative">
+              <img
+                src={
+                  user.profileCover
+                    ? user.profileCover
+                    : "https://img.freepik.com/free-vector/hand-painted-background-violet-orange-colours_23-2148427578.jpg?w=2000"
+                }
+                alt="cover img"
+                className="object-cover h-full w-full"
+              />
               <div className="w-40 h-40 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900 overflow-hidden absolute top-1/4 left-5 border-solid border-white border-4 text-4xl">
                 {user.profileImage ? (
                   <img

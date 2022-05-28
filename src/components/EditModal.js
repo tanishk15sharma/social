@@ -12,6 +12,7 @@ const EditModal = ({ setToggleEditModal }) => {
     bio: user.bio,
     website: user.website,
     profileImage: user.profileImage,
+    profileCover: user.profileCover,
   });
 
   const inputHandler = async (e) => {
@@ -29,21 +30,44 @@ const EditModal = ({ setToggleEditModal }) => {
       }));
     }
   };
-
+  console.log(userDetails);
   const updateUserBtn = async () => {
     getUpdateUser(userDetails);
   };
   return (
     <section className="fixed inset-0 h-screen w-screen flex justify-center items-center z-30 bg-grayLight/50">
       <main className="bg-white w-5/12 min-w-96 rounded-md ">
-        <div className="h-40 w-full border border-solid bg-gradient-to-r from-black to-black relative">
+        <div className="h-40 w-full  relative">
+          <img
+            src={userDetails.profileCover}
+            alt="cover img"
+            className="object-cover h-full w-full"
+          />
           <button
             className="absolute right-2 top-2 text-grayLight hover:text-white"
             onClick={() => setToggleEditModal(false)}
           >
             <span className="material-icons-outlined ">close</span>
           </button>
-          <div className="w-36 h-36 bg-primary-200  rounded-full  flex justify-center items-center font-bold text-primary-900 absolute  border-solid border-white border-4 text-4xl top-1/4 left-5 overflow-hidden">
+
+          <label
+            htmlFor="coverFile"
+            className="cursor-pointer hover:text-white hover:opacity-70"
+          >
+            <span className="material-icons-outlined absolute z-20 inset-11 inset-x-64 text-8xl">
+              photo_camera
+            </span>
+          </label>
+          <input
+            type="file"
+            id="coverFile"
+            accept=".png,.jpeg,.jpg"
+            className="hidden"
+            name="profileCover"
+            onChange={inputHandler}
+          />
+
+          <div className="w-36 h-36 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900 absolute border-solid border-white border-4 text-4xl top-1/4 left-5 overflow-hidden">
             {userDetails.profileImage ? (
               <img
                 src={userDetails.profileImage}
@@ -66,7 +90,6 @@ const EditModal = ({ setToggleEditModal }) => {
               className="hidden"
               name="profileImage"
               onChange={inputHandler}
-              // onChange={(e) => setImageFile(e.target.files[0])}
             />
           </div>
         </div>

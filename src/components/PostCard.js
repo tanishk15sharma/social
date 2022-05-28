@@ -34,8 +34,16 @@ const PostCard = ({ post }) => {
       <div className="mb-1 flex justify-between items-center relative">
         <div className="flex items-center">
           <Link to={`/profile/${post.userId._id}`}>
-            <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
-              {post.userId.name && post.userId.name[0].toUpperCase()}
+            <div className="w-9 h-9 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
+              {post.userId.profileImage ? (
+                <img
+                  src={post.userId.profileImage}
+                  alt="profile"
+                  className="object-cover h-full"
+                />
+              ) : (
+                post.userId.name && post.userId.name[0].toUpperCase()
+              )}
             </div>
           </Link>
           <div className="leading-5 ">

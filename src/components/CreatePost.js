@@ -37,8 +37,16 @@ const CreatePost = ({ editDetails, closeModal }) => {
   return (
     <div className="p-4 px-9 shadow-xl rounded-xl  mt-3">
       <div className="mb-1 flex  items-center ">
-        <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900">
-          {user.name && user.name[0].toUpperCase()}
+        <div className="w-9 h-9 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
+          {user.profileImage ? (
+            <img
+              src={user.profileImage}
+              alt="profile"
+              className="object-cover h-full"
+            />
+          ) : (
+            user.name && user.name[0].toUpperCase()
+          )}
         </div>
 
         <div className="leading-5 w-full pl-2">
