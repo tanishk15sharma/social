@@ -6,31 +6,33 @@ import { deleteUser, getUpdateUser } from "../utils/user";
 
 const EditModal = ({ setToggleEditModal }) => {
   const { user } = useSelector((state) => state.auth);
-  const [imageFile, setImageFile] = useState(null);
-
+  console.log(user);
   const [userDetails, setUserDetails] = useState({
     name: user.name,
     bio: user.bio,
     website: user.website,
-    profileImage: "",
+    profileImage: user.profileImage,
   });
 
-  const inputHandler = (e) => {
-    setUserDetails((previousVal) => ({
-      ...previousVal,
-      [e.target.name]: e.target.value,
-    }));
+  const inputHandler = async (e) => {
+    if (e.target.files) {
+      const imageUrl = await uploadImage(e.target.files[0]);
+      console.log(imageUrl, e.target.name);
+      setUserDetails((previousVal) => ({
+        ...previousVal,
+        [e.target.name]: imageUrl,
+      }));
+    } else {
+      setUserDetails((previousVal) => ({
+        ...previousVal,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
 
   const updateUserBtn = async () => {
-    const imageUrl = await uploadImage(imageFile);
-    setUserDetails((previousVal) => ({
-      ...previousVal,
-      profileImage: imageUrl,
-    }));
     getUpdateUser(userDetails);
   };
-
   return (
     <section className="fixed inset-0 h-screen w-screen flex justify-center items-center z-30 bg-grayLight/50">
       <main className="bg-white w-5/12 min-w-96 rounded-md ">
@@ -41,10 +43,19 @@ const EditModal = ({ setToggleEditModal }) => {
           >
             <span className="material-icons-outlined ">close</span>
           </button>
-          <div className="w-36 h-36 bg-primary-200 rounded-full  flex justify-center items-center font-bold text-primary-900 absolute  border-solid border-white border-4 text-4xl top-1/4 left-5">
-            T{/* <img src={profileBg} alt="profile-bg" /> */}
+          <div className="w-36 h-36 bg-primary-200  rounded-full  flex justify-center items-center font-bold text-primary-900 absolute  border-solid border-white border-4 text-4xl top-1/4 left-5 overflow-hidden">
+            {userDetails.profileImage ? (
+              <img
+                src={userDetails.profileImage}
+                alt="profile-bg"
+                className="object-cover h-full"
+              />
+            ) : (
+              userDetails.name && userDetails.name[0].toUpperCase()
+            )}
+            {/* <img src={profileBg} alt="profile-bg" /> */}
             <label htmlFor="imageFile" className="cursor-pointer">
-              <span className="material-icons-outlined absolute z-20 opacity-5 hover:opacity-80 text-6xl">
+              <span className="material-icons-outlined absolute z-20 top-14 right-14">
                 photo_camera
               </span>
             </label>
@@ -53,7 +64,9 @@ const EditModal = ({ setToggleEditModal }) => {
               id="imageFile"
               accept=".png,.jpeg,.jpg"
               className="hidden"
-              onChange={(e) => setImageFile(e.target.files[0])}
+              name="profileImage"
+              onChange={inputHandler}
+              // onChange={(e) => setImageFile(e.target.files[0])}
             />
           </div>
         </div>

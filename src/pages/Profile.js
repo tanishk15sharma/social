@@ -26,7 +26,7 @@ const Profile = () => {
       setUser(newUser);
     })();
   }, [paramsUserId, toggleEditModal]);
-  console.log(loggedUser.user.following);
+  console.log(user);
   return (
     <div>
       <Header />
@@ -35,8 +35,16 @@ const Profile = () => {
         {user ? (
           <section className="m-3 w-2/5 mr-8 mt-6  border-solid border ">
             <div className="h-40 border border-solid bg-gradient-to-r from-black to-black relative">
-              <div className="w-40 h-40 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900 absolute top-1/4 left-5 border-solid border-white border-4 text-4xl">
-                {user.name && user.name[0].toUpperCase()}
+              <div className="w-40 h-40 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900 overflow-hidden absolute top-1/4 left-5 border-solid border-white border-4 text-4xl">
+                {user.profileImage ? (
+                  <img
+                    src={user.profileImage}
+                    alt="profile"
+                    className="object-cover h-full"
+                  />
+                ) : (
+                  user.name && user.name[0].toUpperCase()
+                )}
                 {/* <img src={profileBg} alt="profile-bg" /> */}
               </div>
             </div>
