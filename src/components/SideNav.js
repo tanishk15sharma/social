@@ -9,7 +9,7 @@ const SideNav = () => {
   const [togglePostModal, setTogglePostModal] = useState(false);
   const [toggleLogout, setToggleLogout] = useState(false);
   return (
-    <div className="ml-12 sticky top-20 z-10 w-1/5">
+    <nav className="ml-12 xl:ml-6 sticky top-20 z-10 w-1/5 tablet:hidden">
       <ul className="m-3">
         <Link to="/">
           <li className="flex my-5 text-xl items-center">
@@ -58,7 +58,7 @@ const SideNav = () => {
       {togglePostModal && (
         <CreatePostModal setTogglePostModal={setTogglePostModal} />
       )}
-    </div>
+    </nav>
   );
 };
 

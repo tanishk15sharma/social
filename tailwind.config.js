@@ -34,11 +34,11 @@ module.exports = {
       xl: { max: "1279px" },
       // => @media (max-width: 1279px) { ... }
 
-      lg: { min: "768px", max: "1023px" },
+      lg: { max: "1136px" },
       // => @media (max-width: 1023px) { ... }
 
-      desktop: { min: "1024px", max: "1279px" },
-
+      miniLaptop: { max: "1058px" },
+      tablet: { max: "944px" },
       mobile: { max: "767px" },
       // => @media (max-width: 767px) { ... }
 

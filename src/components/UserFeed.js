@@ -17,7 +17,7 @@ const UserFeed = () => {
     dispatch(allPosts());
   }, []);
   return (
-    <div className="m-3 mr-8 min-w-[50%]">
+    <div className="m-3 min-w-[50%]">
       {allPostsData.loading ? (
         <PostSkeleton />
       ) : (

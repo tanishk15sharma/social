@@ -1,4 +1,5 @@
 import React from "react";
+import { BottomNav } from "../components/BottomNav";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { Suggestions } from "../components/Suggestions";
@@ -10,6 +11,7 @@ const Home = () => {
       <Header />
       <div className="flex gap-3">
         <SideNav />
+        <BottomNav />
         <UserFeed />
         <Suggestions />
       </div>

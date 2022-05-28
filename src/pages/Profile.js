@@ -12,6 +12,7 @@ import {
   addFollowerInList,
   removeFollowerFromList,
 } from "../features/usersSlice";
+import { BottomNav } from "../components/BottomNav";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Profile = () => {
       <Header />
       <div className="flex gap-3">
         <SideNav />
+        <BottomNav />
         {user ? (
           <section className="m-3 w-2/5 mr-8 mt-6  border-solid border ">
             <div className="h-40 border border-solid relative">

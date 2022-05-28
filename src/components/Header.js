@@ -4,7 +4,7 @@ import { SearchUsers } from "./SearchUsers";
 const Header = () => {
   return (
     <header className=" bg-primary-100 p-2 sticky top-0 z-20">
-      <div className="flex items-center mx-12">
+      <div className="flex items-center mx-12 xl:ml-6">
         <span className="material-icons text-4xl ">flutter_dash</span>
 
         <SearchUsers />

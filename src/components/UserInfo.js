@@ -5,7 +5,7 @@ const UserInfo = ({ user }) => {
   return (
     <Link to={`/profile/${user._id}`}>
       <div className="flex p-2 items-center">
-        <div className="w-9 h-9 bg-primary-200 rounded-full flex justify-center items-center font-bold text-primary-900 mr-1">
+        <div className="w-9 h-9 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900 mr-1">
           {user.profileImage ? (
             <img
               src={user.profileImage}

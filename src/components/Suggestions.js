@@ -21,7 +21,7 @@ const Suggestions = () => {
   );
 
   return (
-    <aside className="m-6 ml-6 p-2 px-4 bg-primary-100 w-7/12 max-h-80 overflow-y-scroll rounded hover:shadow-lg	">
+    <aside className="m-6 xl:ml-2 p-2 px-4 bg-primary-100 w-7/12 max-h-80 overflow-y-scroll rounded hover:shadow-lg	 miniLaptop:hidden">
       <h2 className="font-bold text-primary-600 ml-3 mb-2 uppercase">
         <span className="border-b-4 rounded border-primary-800">
           Suggestions
@@ -42,7 +42,7 @@ const Suggestions = () => {
               >
                 <UserInfo user={user} />
                 <button
-                  className="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  className="text-primary-700 h-8 border border-primary-700 hover:bg-primary-500 hover:text-white active:bg-primary-600 font-medium leading-5 px-4 lg:px-2 lg:text-[12px] py-1 rounded outline-none focus:outline-none mr-1 mb-1 xl:mr-0 mb-0 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => {
                     dispatch(addFollower(user._id));

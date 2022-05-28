@@ -5,7 +5,7 @@ const PostSkeleton = () => {
     <>
       {[1, 2, 3, 4].map((a) => {
         return (
-          <section className="bg-primary-50 h-48 p-5 border-t border-primary-200 animate-pulse">
+          <section className="bg-primary-50 h-48 p-5 border-t border-primary-200 animate-pulse tablet:w-full">
             <div className="flex gap-5">
               <span className="justify-center items-center  bg-primary-100 h-12 w-12 rounded-full"></span>
               <div>

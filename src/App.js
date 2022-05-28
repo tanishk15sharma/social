@@ -30,8 +30,6 @@ function App() {
 
   return (
     <>
-      {/* <Header />
-      <SideNav /> */}
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Home />} />
