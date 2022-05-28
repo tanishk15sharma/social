@@ -26,7 +26,7 @@ const Profile = () => {
       setUser(newUser);
     })();
   }, [paramsUserId, toggleEditModal]);
-  console.log(user);
+
   return (
     <div>
       <Header />

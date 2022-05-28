@@ -17,10 +17,12 @@ const SideNav = () => {
             <span>Home</span>
           </li>
         </Link>
-        <li className="flex my-5 text-xl items-center">
-          <span className="material-icons mr-4">tag</span>
-          <span>Explore</span>
-        </li>
+        <Link to="/explore">
+          <li className="flex my-5 text-xl items-center">
+            <span className="material-icons mr-4">tag</span>
+            <span>Explore</span>
+          </li>
+        </Link>
         <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">notifications_none</span>
           <span>Notifications</span>

@@ -85,6 +85,27 @@ const removeFollower = createAsyncThunk(
   }
 );
 
+const verifyUser = createAsyncThunk("verify/user", async () => {
+  const token = getUserTokenFromLocalStorage();
+  try {
+    const { data, status } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/auth/verify`,
+      {
+        headers: {
+          token,
+        },
+      }
+    );
+
+    if (status === 200) {
+      return data;
+    }
+  } catch (err) {
+    console.log(err);
+    return Promise.reject(err);
+  }
+});
+
 const authSlice = createSlice({
   name: "authentication",
   initialState: {
@@ -92,9 +113,9 @@ const authSlice = createSlice({
     user: {},
   },
   reducers: {
-    verifyUser: (state) => {
-      state.user = JSON.parse(localStorage.getItem("user"));
-    },
+    // verifyUser: (state) => {
+    //   state.user = JSON.parse(localStorage.getItem("user"));
+    // },
   },
   extraReducers: {
     [postLoginDetails.pending]: (state, action) => {
@@ -104,7 +125,7 @@ const authSlice = createSlice({
       state.status = "login successful";
       state.user = payload.data.user;
       localStorage.setItem("userToken", payload.data.token);
-      localStorage.setItem("user", JSON.stringify(payload.data.user));
+      // localStorage.setItem("user", JSON.stringify(payload.data.user));
     },
     [postLoginDetails.rejected]: (state, { error }) => {
       state.status = "Login failed , try again";
@@ -117,7 +138,7 @@ const authSlice = createSlice({
       state.status = "login successful";
       state.user = payload.user;
       localStorage.setItem("userToken", payload.token);
-      localStorage.setItem("user", JSON.stringify(payload.user));
+      // localStorage.setItem("user", JSON.stringify(payload.user));
     },
     [postSignupDetails.rejected]: (state, { error }) => {
       state.status = "Login failed , try again";
@@ -133,6 +154,10 @@ const authSlice = createSlice({
         (id) => id !== payload
       );
     },
+    [verifyUser.fulfilled]: (state, { payload }) => {
+      console.log("verify successfull");
+      state.user = payload.user;
+    },
   },
 });
 
@@ -142,7 +167,8 @@ export {
   postSignupDetails,
   addFollower,
   removeFollower,
+  verifyUser,
 };
-export const { verifyUser } = authSlice.actions;
+// export const { verifyUser } = authSlice.actions;
 
 export default authSlice.reducer;

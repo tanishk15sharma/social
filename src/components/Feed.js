@@ -6,11 +6,17 @@ import { allPosts, userAllPosts } from "../features/postSlice";
 import { PostSkeleton } from "./PostSkeleton";
 const Feed = ({ userId }) => {
   const dispatch = useDispatch();
+  const loggedUser = useSelector((state) => state.auth);
   useEffect(() => {
     userId ? dispatch(userAllPosts(userId)) : dispatch(allPosts());
   }, [userId]);
   const allPostsData = useSelector((state) => state.posts);
-
+  const userFeed = allPostsData.allPosts?.filter((post) =>
+    loggedUser.user.following?.every((id) => post.userId._id !== id)
+  );
+  console.log(userFeed);
+  console.log(loggedUser.user);
+  console.log(allPostsData);
   return (
     <div className="m-3 mr-8 min-w-[50%]">
       {allPostsData.loading ? (
