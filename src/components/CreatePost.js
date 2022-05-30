@@ -34,6 +34,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
     dispatch(addPosts(newPost));
     setDesc("");
   };
+
   return (
     <div className="p-4 px-9  mt-3">
       <div className="mb-1 flex  items-center ">
@@ -59,6 +60,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
           />
         </div>
       </div>
+      <img src={imageFile && URL.createObjectURL(imageFile)} />
       <form
         className="text-grayLight flex justify-between mt-2 p-4 items-center"
         onSubmit={submitHandler}

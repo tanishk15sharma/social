@@ -35,7 +35,7 @@ const Profile = () => {
         <SideNav />
         <BottomNav />
         {user ? (
-          <section className="m-3 w-2/5 mr-8 mt-6  border-solid border ">
+          <section className="m-3 w-2/5 tablet:w-9/12 mt-6 small-mobile:w-full   ">
             <div className="h-40 border border-solid relative">
               <img
                 src={
