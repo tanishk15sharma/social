@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postSignupDetails } from "../features/authSlice";
 import { validSignUp } from "../utils/auth";
+import landingImg from "../assets/sociallife.png";
+
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedUser = useSelector((state) => state.auth);
-  // console.log(userDetails.auth);
 
   const [signUpData, setSignUpData] = useState({
     name: "",
@@ -55,11 +56,13 @@ const Signup = () => {
 
   return (
     <div className=" grid grid-cols-2 h-screen gap-4 ">
-      <div className="border-2 border-solid flex items-center justify-center  ">
-        <h2>LET'S START IT !!</h2>
+      <div className=" flex items-center justify-center  ">
+        <img src={landingImg} alt="social-life" className="mb-5" />
       </div>
-      <div className="flex flex-col items-center justify-center">
-        <h1>CREATE NEW ACCOUNT</h1>
+      <div className="flex flex-col bg-primary-50 items-center justify-center">
+        <h3 class="text-3xl font-normal leading-normal mt-0 mb-2 text-primary-800">
+          CREATE NEW ACCOUNT
+        </h3>
         <form onSubmit={handleSignup}>
           <label>
             <span className="block text-sm font-medium text-slate-700 mt-2">
@@ -182,7 +185,7 @@ const Signup = () => {
               {signUpErrors.terms}
             </span>
           )}
-          <button className="bg-gradient-to-r px-5  rounded-md w-full block ease-in-out duration-300 from-primary-400 to-primary-600 p-1 text-white hover:-translate-y-0.5 hover:shadow-md">
+          <button className="bg-gradient-to-r px-5   w-full block ease-in-out duration-300 from-primary-400 to-primary-600 p-1 text-white hover:-translate-y-0.5 hover:shadow-md">
             {loggedUser.status === "loading" ? "loading" : "SIGNUP"}
           </button>
         </form>

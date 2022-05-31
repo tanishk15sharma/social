@@ -35,8 +35,8 @@ const Profile = () => {
         <SideNav />
         <BottomNav />
         {user ? (
-          <section className="m-3 w-2/5 tablet:w-9/12 mt-6 small-mobile:w-full   ">
-            <div className="h-40 border border-solid relative">
+          <section className="m-3 w-2/5 tablet:w-9/12 mt-6 small-mobile:w-full bg-primary-100  ">
+            <div className="h-40  relative">
               <img
                 src={
                   user.profileCover

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postLoginDetails } from "../features/authSlice";
 import { validLogin } from "../utils/auth";
 import { Link, useNavigate } from "react-router-dom";
+import landingImg from "../assets/sociallife.png";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,11 +38,17 @@ const Login = () => {
   };
   return (
     <div className=" grid grid-cols-2 h-screen gap-4 ">
-      <div className="border-2 border-solid flex items-center justify-center  ">
-        <h2>LET'S START IT !!</h2>
+      <div className="flex items-center justify-center  ">
+        <img src={landingImg} alt="social-life" className="mb-5" />
       </div>
-      <div className="flex flex-col items-center justify-center">
-        <h1>SPLASH</h1>
+      <div className="flex bg-primary-50 flex-col items-center justify-center">
+        <h1 class="text-4xl font-normal leading-normal mt-0 mb-2 text-pink-800 flex items-center justify-center">
+          <span className="text-primary-700 ">S</span>
+          PLASH
+          <span className="material-icons text-4xl flex ml-2 text-primary-900 ">
+            flutter_dash
+          </span>
+        </h1>
         <form onSubmit={handleLogin}>
           <label>
             <span className="block text-sm font-medium text-slate-700">
@@ -69,7 +76,7 @@ const Login = () => {
               Password
             </span>
             <input
-              type="text"
+              type="password"
               className=" border border-solid p-1 w-full "
               placeholder="**********"
               name="password"

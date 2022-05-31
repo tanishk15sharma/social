@@ -36,7 +36,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
   };
 
   return (
-    <div className="p-4 px-9  mt-3">
+    <div className="p-4 px-9 bg-primary-50 pt-5">
       <div className="mb-1 flex  items-center ">
         <div className="w-11 h-11 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
           {user.profileImage ? (
@@ -76,9 +76,9 @@ const CreatePost = ({ editDetails, closeModal }) => {
               onChange={(e) => setImageFile(e.target.files[0])}
             />
           </label>
-          <span className="material-icons-outlined ml-2">
+          {/* <span className="material-icons-outlined ml-2">
             sentiment_satisfied_alt
-          </span>
+          </span> */}
         </div>
         <button
           type="submit"

@@ -63,14 +63,19 @@ const PostCard = ({ post }) => {
             more_vert
           </span>
           <div
-            className={`flex flex-col items-start p-2 absolute right-2 bg-primary-50 ${
+            className={`flex flex-col shadow w-32 absolute right-2 bg-white ${
               postOptions ? "block" : "hidden"
             }`}
           >
             <button
-              onClick={() => setEditModal(true)}
+              onClick={() => {
+                setEditModal(true);
+                setPostOptions(!postOptions);
+              }}
               disabled={post.userId._id !== user._id}
-              className={post.userId._id !== user._id && "opacity-20"}
+              className={`hover:bg-primary-50 w-full pt-1 pb-1 ${
+                post.userId._id !== user._id && "opacity-20"
+              }`}
             >
               EDIT
             </button>
@@ -81,7 +86,9 @@ const PostCard = ({ post }) => {
                 dispatch(removePostFromAllPost(post._id));
               }}
               disabled={post.userId._id !== user._id}
-              className={post.userId._id !== user._id && "opacity-20"}
+              className={`hover:bg-primary-50 border-t pt-1 pb-1 border-solid  ${
+                post.userId._id !== user._id && "opacity-20"
+              }`}
             >
               DELETE
             </button>
@@ -142,9 +149,9 @@ const PostCard = ({ post }) => {
             </button>
           )}
         </div>
-        <div className="flex">
+        {/* <div className="flex">
           <span className="material-icons mr-1">share</span>
-        </div>
+        </div> */}
       </section>
       {showComments && (
         <PostComments comments={post.comments} postId={post._id} />
