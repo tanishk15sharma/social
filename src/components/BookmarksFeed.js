@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllBookmarks } from "../features/bookmarkSlice";
 import { PostCard } from "./PostCard";
 import { PostSkeleton } from "./PostSkeleton";
+import emptyData from "../assets/empty.png";
 const BookmarksFeed = () => {
   const dispatch = useDispatch();
   const { bookmarks, loading } = useSelector((state) => state.bookmarks);
@@ -14,6 +15,8 @@ const BookmarksFeed = () => {
     <main className="m-3 bg-primary-50 min-w-[50%]">
       {loading ? (
         <PostSkeleton />
+      ) : bookmarks.length === 0 ? (
+        <img src={emptyData} alt="empty" />
       ) : (
         bookmarks.map((bookmarkedPost) => (
           <PostCard post={bookmarkedPost} key={bookmarkedPost._id} />

@@ -4,6 +4,8 @@ import { allPosts } from "../features/postSlice";
 import { PostSkeleton } from "./PostSkeleton";
 import { PostCard } from "./PostCard";
 import { CreatePost } from "./CreatePost";
+import emptyData from "../assets/empty.png";
+
 const UserFeed = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.auth);
@@ -23,9 +25,11 @@ const UserFeed = () => {
       ) : (
         <main className="bg-primary-50">
           <CreatePost />
-          {userFeed?.map((post) => (
-            <PostCard post={post} key={post._id} />
-          ))}
+          {userFeed.length === 0 ? (
+            <img src={emptyData} alt="empty" />
+          ) : (
+            userFeed?.map((post) => <PostCard post={post} key={post._id} />)
+          )}
         </main>
       )}
     </div>

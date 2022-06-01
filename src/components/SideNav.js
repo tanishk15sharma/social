@@ -23,10 +23,10 @@ const SideNav = () => {
             <span>Explore</span>
           </li>
         </Link>
-        <li className="flex my-5 text-xl items-center">
+        {/* <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">notifications_none</span>
           <span>Notifications</span>
-        </li>
+        </li> */}
         <Link to="/bookmarks">
           <li className="flex  my-5 text-xl items-center">
             <span className="material-icons mr-4">bookmark_border</span>
