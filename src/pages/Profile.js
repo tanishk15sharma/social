@@ -35,7 +35,7 @@ const Profile = () => {
         <SideNav />
         <BottomNav />
         {user ? (
-          <section className="m-3 w-2/5 tablet:w-9/12 mt-6 small-mobile:w-full bg-primary-100  ">
+          <section className="m-3 w-6/12 tablet:w-9/12 mt-6 small-mobile:w-full bg-primary-100  ">
             <div className="h-40  relative">
               <img
                 src={
@@ -104,8 +104,12 @@ const Profile = () => {
                 </span>
               </div>
               <p className="w-10/12 mt-2">{user.bio}</p>
-              <a href="google.com" className="text-blue font-normal">
-                {user.website ? user.website : "tanishkSharma.com"}
+              <a
+                href={user.website ? user.website : "https://www.google.com/"}
+                className="text-blue font-normal"
+                target="_blank"
+              >
+                {user.website ? user.website : "yourwebsite/"}
               </a>
             </div>
             <Feed userId={paramsUserId} />

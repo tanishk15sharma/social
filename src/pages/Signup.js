@@ -51,7 +51,7 @@ const Signup = () => {
     }
     console.log("sign clicked");
     dispatch(postSignupDetails(signUpData));
-    navigate("/");
+    // navigate("/");
   };
 
   return (

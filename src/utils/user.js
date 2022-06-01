@@ -31,22 +31,4 @@ const getUpdateUser = async (data) => {
   }
 };
 
-const deleteUser = async () => {
-  const token = getUserTokenFromLocalStorage();
-
-  try {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BACKEND_URL}/users/delete`,
-      {
-        headers: {
-          token,
-        },
-      }
-    );
-    console.log(res);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export { getUser, getUpdateUser, deleteUser };
+export { getUser, getUpdateUser };

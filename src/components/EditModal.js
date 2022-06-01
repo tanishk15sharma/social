@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { uploadImage } from "../utils/posts";
-import { deleteUser, getUpdateUser } from "../utils/user";
+import { getUpdateUser } from "../utils/user";
 
 const EditModal = ({ setToggleEditModal }) => {
   const { user } = useSelector((state) => state.auth);
@@ -36,7 +36,7 @@ const EditModal = ({ setToggleEditModal }) => {
   };
   return (
     <section className="fixed inset-0 h-screen w-screen flex justify-center items-center z-30 bg-grayLight/50">
-      <main className="bg-white w-5/12 min-w-96 rounded-md ">
+      <main className="bg-white w-5/12 lg:w-7/12 mobile:w-11/12 min-w-96 rounded-md ">
         <div className="h-40 w-full  relative">
           <img
             src={
@@ -58,7 +58,7 @@ const EditModal = ({ setToggleEditModal }) => {
             htmlFor="coverFile"
             className="cursor-pointer hover:opacity-40 opacity-30"
           >
-            <span className="material-icons-outlined absolute z-20 inset-11 inset-x-64 text-8xl">
+            <span className="material-icons-outlined absolute z-20 inset-2/4 top-12 text-8xl">
               photo_camera
             </span>
           </label>
@@ -135,20 +135,6 @@ const EditModal = ({ setToggleEditModal }) => {
                 onChange={inputHandler}
               />
             </label>
-
-            <button
-              onClick={() =>
-                user.email === "tanishk15@gmail.com"
-                  ? alert("You cannot delete test login account")
-                  : deleteUser
-              }
-              type="button"
-              className="text-white text-center w-100    opacity-80  dark:focus:ring-primary-800 font-medium  hover:opacity-100 float-right  px-5 py-1 rounded-md text-center mb-4 mt-4"
-            >
-              <span className="text-black border-primary-800 border p-1 rounded pr-3 pl-3">
-                Delete A/C
-              </span>
-            </button>
             <button
               onClick={updateUserBtn}
               type="button"

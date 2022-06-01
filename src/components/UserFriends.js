@@ -13,7 +13,7 @@ const UserFriends = ({ user }) => {
   const { userFollowers, userFollowing } = useSelector((state) => state.users);
 
   return (
-    <aside className="m-6 xl:w-4/12 xl:m-0 tablet:w-80 mobile:w-64 small-mobile:hidden xl:mt-6 xl:mr-3 p-2 px-4 bg-primary-100 w-3/12">
+    <aside className="mt-6 m-4 xl:w-4/12 xl:m-0 tablet:w-80 mobile:w-64 small-mobile:hidden xl:mt-6 xl:mr-3 p-2 px-4 bg-primary-100 w-3/12">
       <button
         className={`text-primary-900 w-6/12 font-bold text-center mb-4 border-b-4 ${
           showFollowers ? "border-primary-900" : "border-primary-200"
@@ -54,7 +54,7 @@ const UserFriends = ({ user }) => {
                       friend.name && friend.name[0].toUpperCase()
                     )}
                   </div>
-                  <span className="text-center text-xs font-semibold">
+                  <span className="text-center text-xs font-semibold block">
                     {friend.name}
                   </span>
                 </Link>
@@ -81,7 +81,7 @@ const UserFriends = ({ user }) => {
                     friend.name && friend.name[0].toUpperCase()
                   )}
                 </div>
-                <span className="text-center text-xs font-semibold">
+                <span className="text-center text-xs font-semibold block">
                   {friend.name}
                 </span>
               </Link>

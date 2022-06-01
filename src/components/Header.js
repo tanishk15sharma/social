@@ -9,7 +9,9 @@ const Header = () => {
   return (
     <header className="flex justify-between items-end bg-primary-100 p-2 sticky top-0 z-20">
       <div className="flex items-center mx-12 xl:ml-6">
-        <span className="material-icons text-4xl ">flutter_dash</span>
+        <span className="material-icons text-4xl text-primary-700  ">
+          flutter_dash
+        </span>
 
         <SearchUsers />
       </div>

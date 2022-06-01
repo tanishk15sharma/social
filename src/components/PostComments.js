@@ -22,13 +22,21 @@ const PostComments = ({ comments, postId }) => {
   };
   return (
     <div>
-      <div className="flex  ml-4 ">
-        <div className="w-7 h-7 bg-primary-200 rounded-full flex justify-center mr-4 items-center font-bold text-primary-900">
-          {user.name && user.name[0].toUpperCase()}
+      <div className="flex ml-4 ">
+        <div className="w-9 h-9 bg-primary-200 rounded-full flex overflow-hidden justify-center mr-4 items-center font-bold text-primary-900">
+          {user.profileImage ? (
+            <img
+              src={user.profileImage}
+              alt="profile"
+              className="object-cover h-full"
+            />
+          ) : (
+            user.name && user.name[0].toUpperCase()
+          )}
         </div>
         <input
           placeholder="write a comment"
-          className="focus:outline-none border-solid border w-full"
+          className="focus:outline-none w-full bg-primary-50"
           onChange={(e) =>
             setCommentData({ ...commentData, comment: e.target.value })
           }
