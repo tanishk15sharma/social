@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CreatePostModal } from "./CreatePostModal";
+import { logoutUser } from "../utils/user";
 
 const BottomNav = () => {
   const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const [togglePostModal, setTogglePostModal] = useState(false);
 
@@ -18,7 +20,7 @@ const BottomNav = () => {
           }
         >
           <li>
-            <span className="material-icons mr-4">roofing</span>
+            <span className="material-icons ">roofing</span>
           </li>
         </NavLink>
         <NavLink
@@ -28,7 +30,7 @@ const BottomNav = () => {
           }
         >
           <li>
-            <span className="material-icons mr-4">tag</span>
+            <span className="material-icons ">tag</span>
           </li>
         </NavLink>
         <button
@@ -44,19 +46,12 @@ const BottomNav = () => {
           }
         >
           <li>
-            <span className="material-icons mr-4">bookmark_border</span>
+            <span className="material-icons ">bookmark_border</span>
           </li>
         </NavLink>{" "}
-        <NavLink
-          to={`/profile/${user._id}`}
-          className={({ isActive }) =>
-            isActive ? "border-b-4 border-primary-500" : ""
-          }
-        >
-          <li>
-            <span className="material-icons mr-4">person_outline</span>
-          </li>
-        </NavLink>{" "}
+        <button onClick={() => logoutUser(navigate)}>
+          <span class="material-icons-outlined">logout</span>
+        </button>
       </ul>
       {togglePostModal && (
         <CreatePostModal setTogglePostModal={setTogglePostModal} />

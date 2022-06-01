@@ -31,4 +31,9 @@ const getUpdateUser = async (data) => {
   }
 };
 
-export { getUser, getUpdateUser };
+const logoutUser = (navigate) => {
+  localStorage.clear();
+  navigate("/login");
+};
+
+export { getUser, getUpdateUser, logoutUser };

@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import { createNewPost, editPost, uploadImage } from "../utils/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { addPosts, editPosts } from "../features/postSlice";
+import Picker from "emoji-picker-react";
 
 const CreatePost = ({ editDetails, closeModal }) => {
   const dispatch = useDispatch();
+  const [showEmojisBox, setShowEmojisBox] = useState(false);
   const [desc, setDesc] = useState(editDetails ? editDetails.desc : "");
   const [imageFile, setImageFile] = useState(
     editDetails ? editDetails.image : null
   );
+
   const { user } = useSelector((state) => state.auth);
-  console.log(imageFile);
+
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!desc.length) {
@@ -35,7 +38,9 @@ const CreatePost = ({ editDetails, closeModal }) => {
     setDesc("");
     setImageFile("");
   };
-
+  const onEmojiClick = (event, emojiObject) => {
+    setDesc((previousValues) => previousValues + emojiObject.emoji);
+  };
   return (
     <div className="p-4 px-9 bg-primary-50 pt-5">
       <div className="mb-1 flex  items-center ">
@@ -71,7 +76,10 @@ const CreatePost = ({ editDetails, closeModal }) => {
         onSubmit={submitHandler}
       >
         <div>
-          <label htmlFor="imageFile" className="cursor-pointer">
+          <label
+            htmlFor="imageFile"
+            className="cursor-pointer hover:text-primary-600"
+          >
             <span className="material-icons-outlined mr-2">collections</span>
             <input
               type="file"
@@ -81,9 +89,20 @@ const CreatePost = ({ editDetails, closeModal }) => {
               onChange={(e) => setImageFile(e.target.files[0])}
             />
           </label>
-          {/* <span className="material-icons-outlined ml-2">
-            sentiment_satisfied_alt
-          </span> */}
+          <button
+            onClick={() => setShowEmojisBox((preVal) => !preVal)}
+            type="button"
+            className="hover:text-primary-600"
+          >
+            <span className="material-icons-outlined ml-2">
+              sentiment_satisfied_alt
+            </span>
+          </button>
+          {showEmojisBox && (
+            <div className=" absolute z-30 drop-shadow-lg">
+              <Picker onEmojiClick={onEmojiClick} />
+            </div>
+          )}
         </div>
         <button
           type="submit"
