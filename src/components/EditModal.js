@@ -6,7 +6,7 @@ import { deleteUser, getUpdateUser } from "../utils/user";
 
 const EditModal = ({ setToggleEditModal }) => {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+
   const [userDetails, setUserDetails] = useState({
     name: user.name,
     bio: user.bio,
@@ -30,7 +30,7 @@ const EditModal = ({ setToggleEditModal }) => {
       }));
     }
   };
-  console.log(userDetails);
+
   const updateUserBtn = async () => {
     getUpdateUser(userDetails);
   };
@@ -39,7 +39,11 @@ const EditModal = ({ setToggleEditModal }) => {
       <main className="bg-white w-5/12 min-w-96 rounded-md ">
         <div className="h-40 w-full  relative">
           <img
-            src={userDetails.profileCover}
+            src={
+              userDetails.profileCover
+                ? userDetails.profileCover
+                : "https://img.freepik.com/free-vector/hand-painted-background-violet-orange-colours_23-2148427578.jpg?w=2000"
+            }
             alt="cover img"
             className="object-cover h-full w-full"
           />
@@ -52,7 +56,7 @@ const EditModal = ({ setToggleEditModal }) => {
 
           <label
             htmlFor="coverFile"
-            className="cursor-pointer hover:text-white hover:opacity-70"
+            className="cursor-pointer hover:opacity-40 opacity-30"
           >
             <span className="material-icons-outlined absolute z-20 inset-11 inset-x-64 text-8xl">
               photo_camera
@@ -78,11 +82,6 @@ const EditModal = ({ setToggleEditModal }) => {
               userDetails.name && userDetails.name[0].toUpperCase()
             )}
             {/* <img src={profileBg} alt="profile-bg" /> */}
-            <label htmlFor="imageFile" className="cursor-pointer">
-              <span className="material-icons-outlined absolute z-20 top-14 right-14">
-                photo_camera
-              </span>
-            </label>
             <input
               type="file"
               id="imageFile"
@@ -92,6 +91,11 @@ const EditModal = ({ setToggleEditModal }) => {
               onChange={inputHandler}
             />
           </div>
+          <label htmlFor="imageFile" className="cursor-pointer">
+            <span className="material-icons-outlined absolute z-20 top-36 left-32 opacity-90 text-primary-800 hover:opacity-100">
+              photo_camera
+            </span>
+          </label>
         </div>
         <section className="mt-10 m-8">
           <form>
@@ -133,7 +137,11 @@ const EditModal = ({ setToggleEditModal }) => {
             </label>
 
             <button
-              onClick={deleteUser}
+              onClick={() =>
+                user.email === "tanishk15@gmail.com"
+                  ? alert("You cannot delete test login account")
+                  : deleteUser
+              }
               type="button"
               className="text-white text-center w-100    opacity-80  dark:focus:ring-primary-800 font-medium  hover:opacity-100 float-right  px-5 py-1 rounded-md text-center mb-4 mt-4"
             >

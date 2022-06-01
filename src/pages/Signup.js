@@ -60,7 +60,7 @@ const Signup = () => {
         <img src={landingImg} alt="social-life" className="mb-5" />
       </div>
       <div className="flex flex-col bg-primary-50 items-center justify-center">
-        <h3 class="text-3xl font-normal leading-normal mt-0 mb-2 text-primary-800">
+        <h3 className="text-3xl font-normal leading-normal mt-0 mb-2 text-primary-800">
           CREATE NEW ACCOUNT
         </h3>
         <form onSubmit={handleSignup}>

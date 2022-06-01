@@ -10,7 +10,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
     editDetails ? editDetails.image : null
   );
   const { user } = useSelector((state) => state.auth);
-
+  console.log(imageFile);
   const submitHandler = async (e) => {
     e.preventDefault();
     if (!desc.length) {
@@ -33,6 +33,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
 
     dispatch(addPosts(newPost));
     setDesc("");
+    setImageFile("");
   };
 
   return (
@@ -60,7 +61,11 @@ const CreatePost = ({ editDetails, closeModal }) => {
           />
         </div>
       </div>
-      <img src={imageFile && URL.createObjectURL(imageFile)} />
+      <img
+        src={
+          editDetails ? imageFile : imageFile && URL.createObjectURL(imageFile)
+        }
+      />
       <form
         className="text-grayLight flex justify-between mt-2 p-4 items-center"
         onSubmit={submitHandler}
