@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { CreatePostModal } from "./CreatePostModal";
 import { Logout } from "./Logout";
 
@@ -8,39 +8,52 @@ const SideNav = () => {
   const { user } = useSelector((state) => state.auth);
   const [togglePostModal, setTogglePostModal] = useState(false);
   const [toggleLogout, setToggleLogout] = useState(false);
+
   return (
     <nav className="ml-12 xl:ml-6 sticky top-20 z-10 w-1/5 tablet:hidden">
       <ul className="m-3">
-        <Link to="/">
-          <li className="flex my-5 text-xl items-center">
+        <NavLink
+          className={({ isActive }) => (isActive ? "font-bold" : "")}
+          to="/"
+        >
+          <li className="flex my-5 text-xl items-center bg-inherit">
             <span className="material-icons mr-4">roofing</span>
             <span>Home</span>
           </li>
-        </Link>
-        <Link to="/explore">
-          <li className="flex my-5 text-xl items-center">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "font-bold" : "")}
+          to="/explore"
+        >
+          <li className="flex my-5 text-xl items-center bg-inherit">
             <span className="material-icons mr-4">tag</span>
             <span>Explore</span>
           </li>
-        </Link>
+        </NavLink>
         {/* <li className="flex my-5 text-xl items-center">
           <span className="material-icons mr-4">notifications_none</span>
           <span>Notifications</span>
         </li> */}
-        <Link to="/bookmarks">
-          <li className="flex  my-5 text-xl items-center">
+        <NavLink
+          className={({ isActive }) => (isActive ? "font-bold" : "")}
+          to="/bookmarks"
+        >
+          <li className="flex  my-5 text-xl items-center bg-inherit">
             <span className="material-icons mr-4">bookmark_border</span>
             <span>Bookmarks</span>
           </li>
-        </Link>
-        <Link to={`/profile/${user._id}`}>
-          <li className="flex my-5 text-xl items-center">
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? "font-bold" : "")}
+          to={`/profile/${user._id}`}
+        >
+          <li className="flex my-5 text-xl items-center bg-inherit">
             <span className="material-icons mr-4">person_outline</span>
             <span>Profile</span>
           </li>
-        </Link>
+        </NavLink>
         <li
-          className="flex mt-5 text-xl items-center cursor-pointer"
+          className="flex mt-5 text-xl items-center cursor-pointer bg-inherit"
           onClick={() => setToggleLogout((preVal) => !preVal)}
         >
           <span className="material-icons mr-4">tune</span>

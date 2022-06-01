@@ -28,7 +28,6 @@ const PostCard = ({ post }) => {
     setIsLiked(!isLiked);
     await likeDislikePost(post._id);
   };
-
   return (
     <main className=" p-4 px-9 border-t border-primary-200 pb-5 pt-3 hover:bg-primary-100  ease-in	duration-150 cursor-pointer	transition-all	">
       <div className="mb-1 flex justify-between items-center relative">
