@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
     await likeDislikePost(post._id);
   };
   return (
-    <main className=" p-4 px-9 border-t border-primary-200 pb-5 pt-3 hover:bg-primary-100  ease-in	duration-150 cursor-pointer	transition-all	">
+    <main className=" p-4 small-mobile:p-2 px-9 border-t border-primary-200 pb-5 pt-3 hover:bg-primary-100  ease-in	duration-150 cursor-pointer	transition-all	">
       <div className="mb-1 flex justify-between items-center relative">
         <div className="flex items-center">
           <Link to={`/profile/${post.userId._id}`}>
