@@ -37,7 +37,7 @@ const BottomNav = () => {
           className="border-reset main-color"
           onClick={() => setTogglePostModal((val) => !val)}
         >
-          <span class="material-icons-outlined">add</span>
+          <span className="material-icons-outlined">add</span>
         </button>
         <NavLink
           to="/bookmarks"
@@ -50,7 +50,7 @@ const BottomNav = () => {
           </li>
         </NavLink>{" "}
         <button onClick={() => logoutUser(navigate)}>
-          <span class="material-icons-outlined">logout</span>
+          <span className="material-icons-outlined">logout</span>
         </button>
       </ul>
       {togglePostModal && (

@@ -36,9 +36,9 @@ const UserFeed = () => {
             >
               Sort By:{" "}
               {sortOptions ? (
-                <span class="material-icons-outlined">arrow_drop_up</span>
+                <span className="material-icons-outlined">arrow_drop_up</span>
               ) : (
-                <span class="material-icons-outlined">arrow_drop_down</span>
+                <span className="material-icons-outlined">arrow_drop_down</span>
               )}
             </button>
             {sortOptions && (

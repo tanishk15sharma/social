@@ -47,7 +47,7 @@ const EditModal = ({ setToggleEditModal }) => {
         <div className="fixed inset-0 h-screen w-screen flex justify-center items-center z-50 bg-grayLight/50">
           <svg
             role="status"
-            class="w-11 h-11 mr-2 text-primary-100 animate-spin dark:text-primary-600 fill-primary-600"
+            className="w-11 h-11 mr-2 text-primary-100 animate-spin dark:text-primary-600 fill-primary-600"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
