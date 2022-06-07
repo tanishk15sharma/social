@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPosts, editPosts } from "../features/postSlice";
 import Picker from "emoji-picker-react";
 
-const CreatePost = ({ editDetails, closeModal }) => {
+const CreatePost = ({ editDetails, closeEditModal, closeCreateModal }) => {
   const dispatch = useDispatch();
   const [showEmojisBox, setShowEmojisBox] = useState(false);
   const [desc, setDesc] = useState(editDetails ? editDetails.desc : "");
@@ -28,7 +28,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
           image: imageFile,
         })
       );
-      return closeModal();
+      return closeEditModal();
     }
     const imageUrl = await uploadImage(imageFile);
     const newPost = await createNewPost(desc, imageUrl);
@@ -37,6 +37,7 @@ const CreatePost = ({ editDetails, closeModal }) => {
     dispatch(addPosts(newPost));
     setDesc("");
     setImageFile("");
+    closeCreateModal(false);
   };
   const onEmojiClick = (event, emojiObject) => {
     setDesc((previousValues) => previousValues + emojiObject.emoji);

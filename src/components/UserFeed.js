@@ -21,7 +21,7 @@ const UserFeed = () => {
   }, []);
 
   return (
-    <div className="m-3 mt-6 min-w-[50%]">
+    <div className="m-3 mt-6 w-full">
       {allPostsData.loading ? (
         <PostSkeleton />
       ) : (

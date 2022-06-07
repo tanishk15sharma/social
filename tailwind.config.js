@@ -48,5 +48,5 @@ module.exports = {
     // ...defaultTheme.screens,
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };

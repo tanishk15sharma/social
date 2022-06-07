@@ -7,7 +7,7 @@ import UserFeed from "../components/UserFeed";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Header />
       <div className="flex gap-3">
         <SideNav />
@@ -15,7 +15,7 @@ const Home = () => {
         <UserFeed />
         <Suggestions />
       </div>
-    </div>
+    </>
   );
 };
 

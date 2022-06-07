@@ -21,7 +21,11 @@ const Suggestions = () => {
   );
 
   return (
-    <aside className="m-6 xl:ml-2 p-2 px-4 bg-primary-100 w-7/12 max-h-80 overflow-y-scroll rounded hover:shadow-lg	 miniLaptop:hidden">
+    <aside
+      className="mt-6 mr-2 min-w-[26%] xl:ml-2 p-2 px-4 bg-primary-100 max-h-80 overflow-y-scroll rounded hover:shadow-lg	 miniLaptop:hidden
+    scrollbar-thin scrollbar-thumb-primary-700 scrollbar-track-primary-200
+    "
+    >
       <h2 className="font-bold text-primary-600 ml-3 mb-2 uppercase">
         <span className="border-b-4 rounded border-primary-800">
           Suggestions

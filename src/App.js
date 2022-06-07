@@ -29,21 +29,19 @@ function App() {
   }, [dispatch, token]);
 
   return (
-    <>
-      <Routes>
-        <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/notifications" element={<Notification />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/bookmarks" element={<Bookmarks />} />
-          <Route path="/explore" element={<Explore />} />
-        </Route>
-        <Route element={<PublicRoutes />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route element={<PrivateRoutes />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/notifications" element={<Notification />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/bookmarks" element={<Bookmarks />} />
+        <Route path="/explore" element={<Explore />} />
+      </Route>
+      <Route element={<PublicRoutes />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Route>
+    </Routes>
   );
 }
 

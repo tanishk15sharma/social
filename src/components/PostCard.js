@@ -15,7 +15,7 @@ import {
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { bookmarks, loading } = useSelector((state) => state.bookmarks);
+  const { bookmarks } = useSelector((state) => state.bookmarks);
 
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(post.likes.includes(user._id));
@@ -138,13 +138,7 @@ const PostCard = ({ post }) => {
                 dispatch(addPostToBookmark(post));
               }}
             >
-              <span
-                className={`material-icons mr-1  ${
-                  loading && "text-primary-700"
-                }`}
-              >
-                bookmark_border
-              </span>
+              <span className="material-icons mr-1">bookmark_border</span>
             </button>
           )}
         </div>

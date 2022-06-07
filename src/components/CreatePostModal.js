@@ -12,7 +12,11 @@ const CreatePostModal = ({ setTogglePostModal, editDetails, closeModal }) => {
         className="bg-white w-5/12 min-w-96 tablet:w-8/12 mobile:w-11/12 rounded-md drop-shadow-xl mt-28"
         onClick={(e) => e.stopPropagation()}
       >
-        <CreatePost editDetails={editDetails} closeModal={closeModal} />
+        <CreatePost
+          editDetails={editDetails}
+          closeEditModal={closeModal}
+          closeCreateModal={setTogglePostModal}
+        />
       </main>
     </section>
   );
