@@ -31,11 +31,11 @@ const Profile = () => {
   return (
     <div>
       <Header />
-      <div className="flex gap-3">
+      <div className="flex gap-3 mobile:gap-0">
         <SideNav />
         <BottomNav />
         {user ? (
-          <section className="m-3 w-6/12 tablet:w-9/12 mt-6 small-mobile:w-full bg-primary-100  ">
+          <section className="m-3 w-6/12 tablet:w-9/12 mt-6 small-mobile:mt-0 small-mobile:m-2 small-mobile:w-full bg-primary-100  ">
             <div className="h-40  relative">
               <img
                 src={
@@ -111,8 +111,9 @@ const Profile = () => {
                 {user.website ? user.website : "yourwebsite/"}
               </a>
             </div>
-
-            <Feed userId={paramsUserId} />
+            <div className="w-[98%] overflow-hidden">
+              <Feed userId={paramsUserId} />
+            </div>
           </section>
         ) : (
           <h2>loading</h2>

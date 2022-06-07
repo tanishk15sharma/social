@@ -12,7 +12,7 @@ const BookmarksFeed = () => {
     dispatch(getAllBookmarks());
   }, []);
   return (
-    <main className="m-3 mt-6 bg-primary-50 w-full">
+    <main className="m-3 mobile:m-2 mt-6 bg-primary-50 w-full">
       {loading ? (
         <PostSkeleton />
       ) : bookmarks.length === 0 ? (

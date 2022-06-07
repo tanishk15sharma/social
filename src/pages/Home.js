@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="flex gap-3">
+      <div className="flex gap-3 mobile:gap-0">
         <SideNav />
         <BottomNav />
         <UserFeed />
