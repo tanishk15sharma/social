@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { verifyUser } from "../features/authSlice";
 import { uploadImage } from "../utils/posts";
 import { getUpdateUser } from "../utils/user";
 
 const EditModal = ({ setToggleEditModal }) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
@@ -34,7 +35,8 @@ const EditModal = ({ setToggleEditModal }) => {
   };
 
   const updateUserBtn = async () => {
-    getUpdateUser(userDetails);
+    await getUpdateUser(userDetails);
+    dispatch(verifyUser());
   };
   return (
     <section
