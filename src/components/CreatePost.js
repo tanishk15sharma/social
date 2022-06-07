@@ -43,7 +43,10 @@ const CreatePost = ({ editDetails, closeEditModal, closeCreateModal }) => {
     setDesc((previousValues) => previousValues + emojiObject.emoji);
   };
   return (
-    <div className="p-4 px-9 bg-primary-50 pt-5">
+    <div
+      className="p-4 px-9 bg-primary-50 pt-5"
+      onClick={() => setShowEmojisBox(false)}
+    >
       <div className="mb-1 flex  items-center ">
         <div className="w-11 h-11 bg-primary-200 overflow-hidden rounded-full flex justify-center items-center font-bold text-primary-900">
           {user.profileImage ? (
@@ -91,7 +94,10 @@ const CreatePost = ({ editDetails, closeEditModal, closeCreateModal }) => {
             />
           </label>
           <button
-            onClick={() => setShowEmojisBox((preVal) => !preVal)}
+            onClick={(e) => {
+              setShowEmojisBox((preVal) => !preVal);
+              e.stopPropagation();
+            }}
             type="button"
             className="hover:text-primary-600"
           >
@@ -100,7 +106,10 @@ const CreatePost = ({ editDetails, closeEditModal, closeCreateModal }) => {
             </span>
           </button>
           {showEmojisBox && (
-            <div className=" absolute z-30 drop-shadow-lg">
+            <div
+              className=" absolute z-30 drop-shadow-lg"
+              onClick={(e) => e.stopPropagation()}
+            >
               <Picker onEmojiClick={onEmojiClick} />
             </div>
           )}

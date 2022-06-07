@@ -11,7 +11,7 @@ const Feed = ({ userId }) => {
   const allPostsData = useSelector((state) => state.posts);
 
   return (
-    <div className="m-3 mt-6 w-full ">
+    <div className="w-full ">
       {allPostsData.loading ? (
         <PostSkeleton />
       ) : (

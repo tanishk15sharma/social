@@ -11,7 +11,7 @@ const SearchUsers = () => {
         user.username.toLowerCase().includes(searchUser.toLowerCase())
       : ""
   );
-  console.log(searchOutput);
+
   return (
     <div className="ml-3 relative" onClick={() => setSearchUser("")}>
       <input
@@ -21,7 +21,10 @@ const SearchUsers = () => {
         className="focus:outline-none bg-primary-100 border-b border-black"
         onChange={(e) => setSearchUser(e.target.value)}
       />
-      <div className="rounded mt-2 absolute bg-primary-50 max-h-60 w-60 overflow-y-scroll shadow">
+      <div
+        className="rounded mt-2 absolute bg-primary-50 max-h-30 w-60 overflow-y-scroll shadow
+    scrollbar-thin scrollbar-thumb-primary-700 scrollbar-track-primary-200"
+      >
         {searchOutput.map((user) => (
           <UserInfo user={user} />
         ))}

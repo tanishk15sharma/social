@@ -56,7 +56,6 @@ const Profile = () => {
                 ) : (
                   user.name && user.name[0].toUpperCase()
                 )}
-                {/* <img src={profileBg} alt="profile-bg" /> */}
               </div>
             </div>
             <div className="text-left   mt-10 m-8 ">
@@ -93,7 +92,7 @@ const Profile = () => {
                   </button>
                 )}
               </span>
-              <div className="mt-4">
+              <div className="mt-4 hidden small-mobile:block">
                 <span className="font-medium mr-4">
                   {user.followers ? user.followers.length : 0}{" "}
                   <span className="opacity-60 font-normal">followers</span>
@@ -112,6 +111,7 @@ const Profile = () => {
                 {user.website ? user.website : "yourwebsite/"}
               </a>
             </div>
+
             <Feed userId={paramsUserId} />
           </section>
         ) : (
