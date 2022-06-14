@@ -1,9 +1,9 @@
 
 ### About
-Splash is a social media app to share thoughts and connect with users.
+Splash is a social media app to share thoughts and connect with users globaly. splash is easy to use and user can use splash with laptop/desktop/tablets/phone. 
 
 ### Preview
-
+https://splash-one.vercel.app/
 
 ### Tech Stack
 Frontend: React, Redux, Tailwind css, and React Router v6
